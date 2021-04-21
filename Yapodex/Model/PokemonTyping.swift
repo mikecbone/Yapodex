@@ -13,4 +13,5 @@ enum PokemonTyping: String {
     case fire = "FIRE"
     case flying = "FLYING"
     case water = "WATER"
+    case bug = "BUG"
 }
