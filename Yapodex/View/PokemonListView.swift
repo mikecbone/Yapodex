@@ -8,23 +8,7 @@
 import SwiftUI
 
 struct PokemonListView: View {
-    let pokemon: [Pokemon] = [
-        .init(id: 1, name: "Bulbasaur", primaryType: PokemonTyping.grass, secondaryType: PokemonTyping.poison),
-        .init(id: 2, name: "Ivysaur", primaryType: PokemonTyping.grass, secondaryType: PokemonTyping.poison),
-        .init(id: 3, name: "Venusaur", primaryType: PokemonTyping.grass, secondaryType: PokemonTyping.poison),
-        .init(id: 4, name: "Charmander", primaryType: PokemonTyping.fire, secondaryType: nil),
-        .init(id: 5, name: "Charmeleon", primaryType: PokemonTyping.fire, secondaryType: nil),
-        .init(id: 6, name: "Charizard", primaryType: PokemonTyping.fire, secondaryType: PokemonTyping.flying),
-        .init(id: 7, name: "Squirtle", primaryType: PokemonTyping.water, secondaryType: nil),
-        .init(id: 8, name: "Wartortle", primaryType: PokemonTyping.water, secondaryType: nil),
-        .init(id: 9, name: "Blastoise", primaryType: PokemonTyping.water, secondaryType: nil),
-        .init(id: 10, name: "Caterpie", primaryType: PokemonTyping.bug, secondaryType: nil),
-        .init(id: 11, name: "Metapod", primaryType: PokemonTyping.bug, secondaryType: nil),
-        .init(id: 12, name: "Butterfree", primaryType: PokemonTyping.bug, secondaryType: PokemonTyping.flying),
-        .init(id: 13, name: "Weedle", primaryType: PokemonTyping.bug, secondaryType: PokemonTyping.poison),
-        .init(id: 14, name: "Kakuna", primaryType: PokemonTyping.bug, secondaryType: PokemonTyping.poison),
-        .init(id: 15, name: "Beedrill", primaryType: PokemonTyping.bug, secondaryType: PokemonTyping.poison),
-    ]
+    @ObservedObject private var vm = PokemonViewModel()
 
     @State private var searchText = ""
     @State private var showFilterSheet = false
@@ -36,7 +20,7 @@ struct PokemonListView: View {
                 ScrollView {
                     VStack {
                         SearchBar(searchText: $searchText)
-                        PokemonListGrid(pokemon: pokemon, searchText: searchText, showPokemonDetailView: $showPokemonDetailView)
+                        PokemonListGrid(pokemon: vm.pokemonData?.pokedex ?? [], searchText: searchText, showPokemonDetailView: $showPokemonDetailView)
                     }
                 }.navigationTitle("Yapodex")
                     .toolbar {
@@ -94,9 +78,8 @@ struct PokemonListRow: View {
             Text(pokemon.name)
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
             Spacer()
-            TypeIcon(typing: pokemon.primaryType)
-            if pokemon.secondaryType != nil {
-                TypeIcon(typing: pokemon.secondaryType!)
+            ForEach(pokemon.type, id: \.self) { type in
+                TypeIcon(typing: type)
             }
         }
         .padding(.horizontal, 16)
@@ -108,7 +91,7 @@ struct TypeIcon: View {
     let typing: PokemonTyping
 
     var body: some View {
-        Text(typing.rawValue)
+        Text(typing.rawValue.uppercased())
             .font(.system(size: 14, weight: .bold, design: .monospaced))
             .frame(width: 60)
             .padding(.horizontal, 8)

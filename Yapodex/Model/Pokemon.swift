@@ -7,9 +7,21 @@
 
 import Foundation
 
-struct Pokemon: Hashable {
+struct PokemonData: Decodable, Hashable {
+    let pokedex: [Pokemon]
+}
+
+struct Pokemon: Decodable, Hashable {
     let id: Int
     let name: String
-    let primaryType: PokemonTyping
-    let secondaryType: PokemonTyping?
+    let type: [PokemonTyping]
+}
+
+enum PokemonTyping: String, Decodable {
+    case grass = "grass"
+    case poison = "poison"
+    case fire = "fire"
+    case flying = "flying"
+    case water = "water"
+    case bug = "bug"
 }

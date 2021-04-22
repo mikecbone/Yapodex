@@ -1,0 +1,79 @@
+{
+  "pokedex": [
+    {
+      "id": 1,
+      "name": "Bulbasaur",
+      "type": ["grass", "poison"]
+    },
+    {
+      "id": 2,
+      "name": "Ivysaur",
+      "type": ["grass", "poison"]
+    },
+    {
+      "id": 3,
+      "name": "Venusaur",
+      "type": ["grass", "poison"]
+    },
+    {
+      "id": 4,
+      "name": "Charmander",
+      "type": ["fire"]
+    },
+    {
+      "id": 5,
+      "name": "Charmeleon",
+      "type": ["fire"]
+    },
+    {
+      "id": 6,
+      "name": "Charizard",
+      "type": ["fire", "flying"]
+    },
+    {
+      "id": 7,
+      "name": "Squirtle",
+      "type": ["water"]
+    },
+    {
+      "id": 8,
+      "name": "Wartortle",
+      "type": ["water"]
+    },
+    {
+      "id": 9,
+      "name": "Blastoise",
+      "type": ["water"]
+    },
+    {
+      "id": 10,
+      "name": "Caterpie",
+      "type": ["bug"]
+    },
+    {
+      "id": 11,
+      "name": "Metapod",
+      "type": ["bug"]
+    },
+    {
+      "id": 12,
+      "name": "Butterfree",
+      "type": ["bug", "flying"]
+    },
+    {
+      "id": 13,
+      "name": "Weedle",
+      "type": ["bug", "poison"]
+    },
+    {
+      "id": 14,
+      "name": "Kakuna",
+      "type": ["bug", "poison"]
+    },
+    {
+      "id": 15,
+      "name": "Beedrill",
+      "type": ["bug", "poison"]
+    },
+  ]
+}

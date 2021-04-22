@@ -24,5 +24,22 @@ class PokemonUtils {
             return Color(#colorLiteral(red: 0.7459656958, green: 0.8235294223, blue: 0.2649375466, alpha: 1))
         }
     }
+    
+    static func PokemonStatsColor(stat: Int) -> Color {
+        switch stat {
+        case 0...40:
+            return Color(#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1))
+        case 40...60:
+            return Color(#colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1))
+        case 60...80:
+            return Color(#colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1))
+        case 80...100:
+            return Color(#colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1))
+        case 100...Int.max:
+            return Color(#colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1))
+        default:
+            return Color.white
+        }
+    }
 }
 
