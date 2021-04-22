@@ -15,6 +15,7 @@ struct Pokemon: Decodable, Hashable {
     let id: Int
     let name: String
     let type: [PokemonTyping]
+    let base: PokemonBaseStats
 }
 
 enum PokemonTyping: String, Decodable {
@@ -24,4 +25,8 @@ enum PokemonTyping: String, Decodable {
     case flying = "flying"
     case water = "water"
     case bug = "bug"
+}
+
+struct PokemonBaseStats: Decodable, Hashable {
+    let HP, ATK, DEF, SPA, SPD, SPE: Int
 }
