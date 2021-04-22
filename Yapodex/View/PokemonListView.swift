@@ -55,11 +55,11 @@ struct PokemonListGrid: View {
 
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-            ForEach(pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }, id: \.self) { pokemon in
+            ForEach(pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }, id: \.self) { mon in
                 NavigationLink(
-                    destination: PokemonDetailView(pokemon: pokemon),
+                    destination: PokemonDetailView(pokemon: pokemon, pokemonId: mon.id),
                     label: {
-                        PokemonListRow(pokemon: pokemon)
+                        PokemonListRow(pokemon: mon)
                     }).foregroundColor(Color(.label))
             }
         })

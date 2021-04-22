@@ -30,13 +30,15 @@ class PokemonUtils {
         case 0...40:
             return Color(#colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1))
         case 40...60:
-            return Color(#colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1))
+            return Color(#colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1))
         case 60...80:
-            return Color(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1))
+            return Color(#colorLiteral(red: 1, green: 0.7854062664, blue: 0.1662433349, alpha: 1))
         case 80...100:
-            return Color(#colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1))
-        case 100...Int.max:
-            return Color(#colorLiteral(red: 0.5818830132, green: 0.2156915367, blue: 1, alpha: 1))
+            return Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1))
+        case 100...150:
+            return Color(#colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1))
+        case 150...Int.max:
+            return Color(#colorLiteral(red: 0.5127891239, green: 0.05777581376, blue: 0.6734730114, alpha: 1))
         default:
             return Color.white
         }

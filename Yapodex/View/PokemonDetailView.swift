@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
-    let pokemon: Pokemon
+//    let pokemon: Pokemon
+    let pokemon: [Pokemon]
+    @State var pokemonId: Int
 
     var body: some View {
         ScrollView {
-            PokemonImage(pokemon: pokemon)
-            InitialInfo(pokemon: pokemon)
-            BaseStats(pokemon: pokemon)
+            PokemonImage(pokemon: pokemon, pokemonId: $pokemonId)
+            InitialInfo(pokemon: pokemon[pokemonId - 1])
+            BaseStats(pokemon: pokemon[pokemonId - 1])
         }.navigationTitle("Details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -31,36 +33,41 @@ struct PokemonDetailView: View {
 
 struct PokemonDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            PokemonDetailView(pokemon: .init(id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(HP: 45, ATK: 49, DEF: 49, SPA: 65, SPD: 65, SPE: 45)))
-        }
         PokemonListView()
     }
 }
 
 struct PokemonImage: View {
-    let pokemon: Pokemon
+    let pokemon: [Pokemon]
+    @Binding var pokemonId: Int
 
     var body: some View {
-        HStack {
-            Button(action: {
-                // TODO: Load previous pokemon
-            }, label: {
-                Image(systemName: "chevron.backward")
-            })
-            Spacer()
-            Image("art__\(String(format: "%03d", pokemon.id))")
-                .resizable()
-                .scaledToFit()
-            Spacer()
-            Button(action: {
-                // TODO: Load next pokemon
-            }, label: {
-                Image(systemName: "chevron.forward")
-            })
-        }
-        .padding()
-        .background(Color(.systemGray6))
+        ZStack {
+            TabView(selection: $pokemonId) {
+                ForEach(pokemon, id: \.self) { mon in
+                    Image("art__\(String(format: "%03d", mon.id))")
+                        .resizable()
+                        .scaledToFit()
+                        .tag(mon.id)
+                        .padding()
+                }
+            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            HStack {
+                Button(action: {
+                    pokemonId -= 1
+                }, label: {
+                    Image(systemName: "chevron.backward")
+                })
+                    .disabled(pokemonId <= 1)
+                Spacer()
+                Button(action: {
+                    pokemonId += 1
+                }, label: {
+                    Image(systemName: "chevron.forward")
+                })
+                    .disabled(pokemonId >= 15)
+            }.padding()
+        }.background(Color(.systemGray6))
         .frame(height: 200)
     }
 }
@@ -77,7 +84,8 @@ struct InitialInfo: View {
             }
             Text(pokemon.name)
                 .font(.system(size: 32, weight: .bold, design: .monospaced))
-            Text("#\(String(format: "%03d", pokemon.id)) - Seed Pokemon")
+            Text("#\(String(format: "%03d", pokemon.id))")
+                .font(.system(size: 16, weight: .regular, design: .monospaced))
         }.padding()
     }
 }
@@ -108,7 +116,8 @@ struct BaseStatBar: View {
     let statName: String
     let statValue: Double
     var body: some View {
-        ProgressView("\(statName)  \(String(format: "%.0f", statValue))", value: statValue, total: 255)
+        ProgressView("\(statName)  \(String(format: "%.0f", statValue))", value: statValue, total: 150)
             .progressViewStyle(LinearProgressViewStyle(tint: PokemonUtils.PokemonStatsColor(stat: Int(statValue))))
+            .animation(.default)
     }
 }
