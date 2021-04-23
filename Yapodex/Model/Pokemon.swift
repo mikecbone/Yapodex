@@ -45,7 +45,6 @@ struct PokemonBaseStats: Decodable, Hashable {
 
 struct PokemonDataTypeEffectiveness: Decodable, Hashable {
     let type_effectiveness: Type
-//    let type_effectiveness: [PokemonTyping: TypeEffectiveness]
 }
 
 struct Type: Decodable, Hashable {

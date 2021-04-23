@@ -14,6 +14,10 @@ struct MainView: View {
                 .tabItem {
                     Label("Yapodex", systemImage: "list.dash")
                 }
+            TypeEffectivenessList()
+                .tabItem {
+                    Label("Type", systemImage: "list.dash")
+                }
         }
     }
 }
