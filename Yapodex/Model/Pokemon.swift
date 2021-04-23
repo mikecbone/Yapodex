@@ -7,9 +7,8 @@
 
 import Foundation
 
-struct PokemonData: Decodable, Hashable {
+struct PokemonDataPokedex: Decodable, Hashable {
     let pokedex: [Pokemon]
-    let type_effectiveness: Type
 }
 
 struct Pokemon: Decodable, Hashable {
@@ -19,7 +18,7 @@ struct Pokemon: Decodable, Hashable {
     let base: PokemonBaseStats
 }
 
-enum PokemonTyping: String, Decodable {
+enum PokemonTyping: String, Decodable, CaseIterable {
     case normal = "normal"
     case fire = "fire"
     case fighting = "fight"
@@ -44,10 +43,19 @@ struct PokemonBaseStats: Decodable, Hashable {
     let HP, ATK, DEF, SPA, SPD, SPE: Int
 }
 
+struct PokemonDataTypeEffectiveness: Decodable, Hashable {
+    let type_effectiveness: Type
+//    let type_effectiveness: [PokemonTyping: TypeEffectiveness]
+}
+
 struct Type: Decodable, Hashable {
     let normal, fighting, flying, poison, ground, rock, bug, ghost, steel, fire, water, grass, electric, psychic, ice, dragon, dark, fairy: TypeEffectiveness
 }
 
 struct TypeEffectiveness: Decodable, Hashable {
     let double_damage_from, double_damage_to, half_damage_from, half_damage_to, no_damage_from, no_damage_to: [PokemonTyping]
+}
+
+struct TypeEffectivenessFrom: Hashable {
+    var no_damage_from, quarter_damage_from, half_damage_from, regular_damage_from, double_damage_from, quad_damage_from: [PokemonTyping]
 }

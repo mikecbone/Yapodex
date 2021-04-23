@@ -1,0 +1,199 @@
+{
+  "pokedex": [
+    {
+      "id": 1,
+      "name": "Bulbasaur",
+      "type": ["grass", "poison"],
+      "base": {
+        "HP": 45,
+        "ATK": 49,
+        "DEF": 49,
+        "SPA": 65,
+        "SPD": 65,
+        "SPE": 45
+      }
+    },
+    {
+      "id": 2,
+      "name": "Ivysaur",
+      "type": ["grass", "poison"],
+      "base": {
+        "HP": 60,
+        "ATK": 62,
+        "DEF": 63,
+        "SPA": 80,
+        "SPD": 80,
+        "SPE": 60
+      }
+    },
+    {
+      "id": 3,
+      "name": "Venusaur",
+      "type": ["grass", "poison"],
+      "base": {
+        "HP": 80,
+        "ATK": 82,
+        "DEF": 83,
+        "SPA": 100,
+        "SPD": 100,
+        "SPE": 80
+      }
+    },
+    {
+      "id": 4,
+      "name": "Charmander",
+      "type": ["fire"],
+      "base": {
+        "HP": 39,
+        "ATK": 52,
+        "DEF": 43,
+        "SPA": 60,
+        "SPD": 50,
+        "SPE": 65
+      }
+    },
+    {
+      "id": 5,
+      "name": "Charmeleon",
+      "type": ["fire"],
+      "base": {
+        "HP": 58,
+        "ATK": 64,
+        "DEF": 58,
+        "SPA": 80,
+        "SPD": 65,
+        "SPE": 80
+      }
+    },
+    {
+      "id": 6,
+      "name": "Charizard",
+      "type": ["fire", "flying"],
+      "base": {
+        "HP": 78,
+        "ATK": 84,
+        "DEF": 78,
+        "SPA": 109,
+        "SPD": 85,
+        "SPE": 100
+      }
+    },
+    {
+      "id": 7,
+      "name": "Squirtle",
+      "type": ["water"],
+      "base": {
+        "HP": 44,
+        "ATK": 48,
+        "DEF": 65,
+        "SPA": 50,
+        "SPD": 64,
+        "SPE": 43
+      }
+    },
+    {
+      "id": 8,
+      "name": "Wartortle",
+      "type": ["water"],
+      "base": {
+        "HP": 59,
+        "ATK": 63,
+        "DEF": 80,
+        "SPA": 65,
+        "SPD": 80,
+        "SPE": 58
+      }
+    },
+    {
+      "id": 9,
+      "name": "Blastoise",
+      "type": ["water"],
+      "base": {
+        "HP": 79,
+        "ATK": 83,
+        "DEF": 100,
+        "SPA": 85,
+        "SPD": 105,
+        "SPE": 78
+      }
+    },
+    {
+      "id": 10,
+      "name": "Caterpie",
+      "type": ["bug"],
+      "base": {
+        "HP": 45,
+        "ATK": 30,
+        "DEF": 35,
+        "SPA": 20,
+        "SPD": 20,
+        "SPE": 45
+      }
+    },
+    {
+      "id": 11,
+      "name": "Metapod",
+      "type": ["bug"],
+      "base": {
+        "HP": 50,
+        "ATK": 20,
+        "DEF": 55,
+        "SPA": 25,
+        "SPD": 25,
+        "SPE": 30
+      }
+    },
+    {
+      "id": 12,
+      "name": "Butterfree",
+      "type": ["bug", "flying"],
+      "base": {
+        "HP": 60,
+        "ATK": 45,
+        "DEF": 50,
+        "SPA": 90,
+        "SPD": 80,
+        "SPE": 70
+      }
+    },
+    {
+      "id": 13,
+      "name": "Weedle",
+      "type": ["bug", "poison"],
+      "base": {
+        "HP": 40,
+        "ATK": 35,
+        "DEF": 30,
+        "SPA": 20,
+        "SPD": 20,
+        "SPE": 50
+      }
+    },
+    {
+      "id": 14,
+      "name": "Kakuna",
+      "type": ["bug", "poison"],
+      "base": {
+        "HP": 45,
+        "ATK": 25,
+        "DEF": 50,
+        "SPA": 25,
+        "SPD": 25,
+        "SPE": 35
+      }
+    },
+    {
+      "id": 15,
+      "name": "Beedrill",
+      "type": ["bug", "poison"],
+      "base": {
+        "HP": 65,
+        "ATK": 90,
+        "DEF": 40,
+        "SPA": 45,
+        "SPD": 80,
+        "SPE": 75
+      }
+    },
+  ]
+}

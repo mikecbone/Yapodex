@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TypeEffectivenessList: View {
+    // TODO: This should be passed in or whatever
+    @ObservedObject private var vm = PokedexViewModel()
     @State private var displayMode = "super"
     
     var body: some View {

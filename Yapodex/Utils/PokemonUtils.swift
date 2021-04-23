@@ -67,5 +67,50 @@ class PokemonUtils {
             return Color.white
         }
     }
+    
+    static func CalculateTypeEffectivenessFrom(typeEffectivenesses: [TypeEffectiveness]) -> TypeEffectivenessFrom {
+        var combinedTyping = [PokemonTyping: Double]()
+        
+        for type in PokemonTyping.allCases {
+            combinedTyping[type] = 1
+        }
+        
+        for typeEffectiveness in typeEffectivenesses {
+            for type in typeEffectiveness.double_damage_from {
+                combinedTyping[type, default: 1] *= 2
+            }
+            for type in typeEffectiveness.half_damage_from {
+                combinedTyping[type, default: 1] *= 0.5
+            }
+            for type in typeEffectiveness.no_damage_from {
+                combinedTyping[type, default: 1] *= 0
+            }
+        }
+        
+        var returnTypeEffectiveness = TypeEffectivenessFrom(no_damage_from: [], quarter_damage_from: [], half_damage_from: [], regular_damage_from: [], double_damage_from: [], quad_damage_from: [])
+        
+        for type in combinedTyping {
+            if type.value == 0 {
+                returnTypeEffectiveness.no_damage_from.append(type.key)
+            }
+            if type.value == 0.25 {
+                returnTypeEffectiveness.quarter_damage_from.append(type.key)
+            }
+            if (type.value == 0.5) {
+                returnTypeEffectiveness.half_damage_from.append(type.key)
+            }
+            if type.value == 1 {
+                returnTypeEffectiveness.regular_damage_from.append(type.key)
+            }
+            if type.value == 2 {
+                returnTypeEffectiveness.double_damage_from.append(type.key)
+            }
+            if (type.value == 4) {
+                returnTypeEffectiveness.quad_damage_from.append(type.key)
+            }
+        }
+        
+        return returnTypeEffectiveness
+    }
 }
 

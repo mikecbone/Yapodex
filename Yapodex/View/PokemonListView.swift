@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PokemonListView: View {
-    @ObservedObject private var vm = PokemonViewModel()
+    @ObservedObject private var vm = PokedexViewModel()
 
     @State private var searchText = ""
     @State private var showFilterSheet = false
@@ -20,7 +20,7 @@ struct PokemonListView: View {
                 ScrollView {
                     VStack {
                         SearchBar(searchText: $searchText)
-                        PokemonListGrid(pokemon: vm.pokemonData?.pokedex ?? [], searchText: searchText, showPokemonDetailView: $showPokemonDetailView)
+                        PokemonListGrid(pokemon: vm.pokedex?.pokedex ?? [], searchText: searchText, showPokemonDetailView: $showPokemonDetailView)
                     }
                 }.navigationTitle("Yapodex")
                     .toolbar {
