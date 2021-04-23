@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA37A6F02632BEA60050388B /* PokemonTypeEffectiveness.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37A6EF2632BEA60050388B /* PokemonTypeEffectiveness.swift */; };
+		EA37A6F32632C9C30050388B /* TypeEffectivenessList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37A6F22632C9C30050388B /* TypeEffectivenessList.swift */; };
 		EA944DA9262F716C00CDDF1C /* YapodexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA944DA8262F716C00CDDF1C /* YapodexApp.swift */; };
 		EA944DAB262F716C00CDDF1C /* PokemonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA944DAA262F716C00CDDF1C /* PokemonListView.swift */; };
 		EA944DAD262F716D00CDDF1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA944DAC262F716D00CDDF1C /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA37A6EF2632BEA60050388B /* PokemonTypeEffectiveness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeEffectiveness.swift; sourceTree = "<group>"; };
+		EA37A6F22632C9C30050388B /* TypeEffectivenessList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeEffectivenessList.swift; sourceTree = "<group>"; };
 		EA944DA5262F716C00CDDF1C /* Yapodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yapodex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA944DA8262F716C00CDDF1C /* YapodexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YapodexApp.swift; sourceTree = "<group>"; };
 		EA944DAA262F716C00CDDF1C /* PokemonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListView.swift; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				EA944DAA262F716C00CDDF1C /* PokemonListView.swift */,
 				EA989E592630A36500DC0860 /* FilterSheet.swift */,
 				EA989E642630B5B900DC0860 /* PokemonDetailView.swift */,
+				EA37A6EF2632BEA60050388B /* PokemonTypeEffectiveness.swift */,
+				EA37A6F22632C9C30050388B /* TypeEffectivenessList.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -204,9 +210,11 @@
 				EA989E652630B5B900DC0860 /* PokemonDetailView.swift in Sources */,
 				EA989E622630B3E300DC0860 /* MainView.swift in Sources */,
 				EA944DAB262F716C00CDDF1C /* PokemonListView.swift in Sources */,
+				EA37A6F02632BEA60050388B /* PokemonTypeEffectiveness.swift in Sources */,
 				EA944DA9262F716C00CDDF1C /* YapodexApp.swift in Sources */,
 				EA944DC1262F810A00CDDF1C /* PokemonUtils.swift in Sources */,
 				EAF73C5C2631D56A006C1445 /* PokemonViewModel.swift in Sources */,
+				EA37A6F32632C9C30050388B /* TypeEffectivenessList.swift in Sources */,
 				EA989E5A2630A36500DC0860 /* FilterSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

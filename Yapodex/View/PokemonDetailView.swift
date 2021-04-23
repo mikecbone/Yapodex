@@ -76,16 +76,21 @@ struct InitialInfo: View {
 
     var body: some View {
         VStack {
-            HStack {
-                ForEach(pokemon.type, id: \.self) { type in
-                    TypeIcon(typing: type)
+            NavigationLink(
+                destination: PokemonTypeEffectiveness(pokemon: pokemon),
+                label: {
+                    HStack {
+                        ForEach(pokemon.type, id: \.self) { type in
+                            TypeIcon(typing: type)
+                        }
+                    }
                 }
-            }
+            )
             Text(pokemon.name)
                 .font(.system(size: 32, weight: .bold, design: .monospaced))
             Text("#\(String(format: "%03d", pokemon.id))")
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
-        }.padding()
+        }.padding(8)
     }
 }
 
@@ -105,7 +110,7 @@ struct BaseStats: View {
                 BaseStatBar(statName: "SPE", statValue: Double(pokemon.base.SPE))
             }.padding(.top, 4)
             Text("Total: \(pokemon.base.HP + pokemon.base.ATK + pokemon.base.DEF + pokemon.base.SPA + pokemon.base.SPD + pokemon.base.SPE)")
-        }.padding()
+        }.padding(8)
             .font(.system(size: 16, weight: .regular, design: .monospaced))
             .background(Color(.systemGray6))
     }

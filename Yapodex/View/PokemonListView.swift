@@ -58,7 +58,6 @@ struct PokemonListGrid: View {
     @Binding var showPokemonDetailView: Bool
     let filteredPokemon: [Pokemon]
     
-//    let filteredPokemon = pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }
     init(pokemon: [Pokemon], searchText: String, showPokemonDetailView: Binding<Bool>) {
         self.pokemon = pokemon
         self.searchText = searchText
@@ -68,13 +67,6 @@ struct PokemonListGrid: View {
 
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-//            ForEach(pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }, id: \.self) { mon in
-//                NavigationLink(
-//                    destination: PokemonDetailView(pokemon: pokemon, pokemonId: mon.id),
-//                    label: {
-//                        PokemonListRow(pokemon: mon)
-//                    }).foregroundColor(Color(.label))
-//            }
             ForEach(filteredPokemon.indices, id: \.self) { index in
                 NavigationLink(
                     destination: PokemonDetailView(pokemon: filteredPokemon, index: index),
@@ -93,7 +85,8 @@ struct PokemonListRow: View {
         HStack {
             Image("\(pokemon.id)")
                 .resizable()
-                .frame(width: 40, height: 40)
+                .scaledToFit()
+                .frame(width: 42, height: 42)
                 .padding(.trailing, 4)
             Text(pokemon.name)
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
@@ -113,7 +106,7 @@ struct TypeIcon: View {
     var body: some View {
         Text(typing.rawValue.uppercased())
             .font(.system(size: 14, weight: .bold, design: .monospaced))
-            .frame(width: 60)
+            .frame(width: 66)
             .padding(.horizontal, 8)
             .padding(.vertical, 4)
             .background(PokemonUtils.PokemonTypingColor(type: typing))
