@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
-//    let pokemon: Pokemon
     let pokemon: [Pokemon]
-    @State var pokemonId: Int
+    @State var index: Int
 
     var body: some View {
         ScrollView {
-            PokemonImage(pokemon: pokemon, pokemonId: $pokemonId)
-            InitialInfo(pokemon: pokemon[pokemonId - 1])
-            BaseStats(pokemon: pokemon[pokemonId - 1])
+            PokemonImage(pokemon: pokemon, index: $index)
+            InitialInfo(pokemon: pokemon[index])
+            BaseStats(pokemon: pokemon[index])
         }.navigationTitle("Details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -39,33 +38,33 @@ struct PokemonDetailView_Previews: PreviewProvider {
 
 struct PokemonImage: View {
     let pokemon: [Pokemon]
-    @Binding var pokemonId: Int
+    @Binding var index: Int
 
     var body: some View {
         ZStack {
-            TabView(selection: $pokemonId) {
-                ForEach(pokemon, id: \.self) { mon in
-                    Image("art__\(String(format: "%03d", mon.id))")
+            TabView(selection: $index) {
+                ForEach(pokemon.indices, id: \.self) { index in
+                    Image("art__\(String(format: "%03d", pokemon[index].id))")
                         .resizable()
                         .scaledToFit()
-                        .tag(mon.id)
+                        .tag(index)
                         .padding()
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             HStack {
                 Button(action: {
-                    pokemonId -= 1
+                    index -= 1
                 }, label: {
                     Image(systemName: "chevron.backward")
                 })
-                    .disabled(pokemonId <= 1)
+                    .disabled(index <= 0)
                 Spacer()
                 Button(action: {
-                    pokemonId += 1
+                    index += 1
                 }, label: {
                     Image(systemName: "chevron.forward")
                 })
-                    .disabled(pokemonId >= 15)
+                    .disabled(index >= pokemon.count - 1)
             }.padding()
         }.background(Color(.systemGray6))
         .frame(height: 200)

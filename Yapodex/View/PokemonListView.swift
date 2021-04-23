@@ -48,18 +48,38 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+func filterPokemon(pokemon: [Pokemon], searchText: String) -> [Pokemon] {
+    return pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }
+}
+
 struct PokemonListGrid: View {
     let pokemon: [Pokemon]
     let searchText: String
     @Binding var showPokemonDetailView: Bool
+    let filteredPokemon: [Pokemon]
+    
+//    let filteredPokemon = pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }
+    init(pokemon: [Pokemon], searchText: String, showPokemonDetailView: Binding<Bool>) {
+        self.pokemon = pokemon
+        self.searchText = searchText
+        self._showPokemonDetailView = showPokemonDetailView
+        self.filteredPokemon = filterPokemon(pokemon: pokemon, searchText: searchText)
+    }
 
     var body: some View {
         LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-            ForEach(pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }, id: \.self) { mon in
+//            ForEach(pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }, id: \.self) { mon in
+//                NavigationLink(
+//                    destination: PokemonDetailView(pokemon: pokemon, pokemonId: mon.id),
+//                    label: {
+//                        PokemonListRow(pokemon: mon)
+//                    }).foregroundColor(Color(.label))
+//            }
+            ForEach(filteredPokemon.indices, id: \.self) { index in
                 NavigationLink(
-                    destination: PokemonDetailView(pokemon: pokemon, pokemonId: mon.id),
+                    destination: PokemonDetailView(pokemon: filteredPokemon, index: index),
                     label: {
-                        PokemonListRow(pokemon: mon)
+                        PokemonListRow(pokemon: filteredPokemon[index])
                     }).foregroundColor(Color(.label))
             }
         })
