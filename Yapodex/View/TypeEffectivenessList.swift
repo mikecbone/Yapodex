@@ -30,6 +30,7 @@ struct TypeEffectivenessList: View {
                     } else {
                         ImmuneEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
                     }
+                    Divider()
                 }
             }
         }.navigationTitle("Type Effectiveness")
@@ -41,6 +42,9 @@ struct TypeEffectivenessList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             TypeEffectivenessList()
+        }
+        NavigationView {
+            TypeEffectivenessList().preferredColorScheme(.dark)
         }
     }
 }
