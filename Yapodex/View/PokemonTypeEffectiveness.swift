@@ -89,10 +89,6 @@ struct EffectivenessChart: View {
             HStack {
                 Text(title)
                 Spacer()
-//                HStack(spacing: 0) {
-//                    Image(systemName: "xmark")
-//                    Text("\(effectiveNumber)")
-//                }
                 Text("x \(effectiveNumber)")
             }
             .padding(8)

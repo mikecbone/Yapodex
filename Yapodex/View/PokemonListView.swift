@@ -12,6 +12,7 @@ struct PokemonListView: View {
 
     @State private var searchText = ""
     @State private var showFilterSheet = false
+    @State private var listFilters = Filters(types: [])
     @State private var showPokemonDetailView = false
 
     var body: some View {
@@ -20,7 +21,7 @@ struct PokemonListView: View {
                 ScrollView {
                     VStack {
                         SearchBar(searchText: $searchText)
-                        PokemonListGrid(pokemon: vm.pokedex?.pokedex ?? [], searchText: searchText, showPokemonDetailView: $showPokemonDetailView)
+                        PokemonListGrid(pokemon: vm.pokedex?.pokedex ?? [], searchText: searchText, showPokemonDetailView: $showPokemonDetailView, listFilters: listFilters)
                     }
                 }.navigationTitle("Yapodex")
                     .toolbar {
@@ -31,38 +32,66 @@ struct PokemonListView: View {
                                 Image(systemName: "arrow.up.arrow.down")
                                     
                             })
-                            .sheet(isPresented: $showFilterSheet, onDismiss: { showFilterSheet = false } , content: {
-                                Text("Filters")
-                            })
                         }
                     }
             }.navigationViewStyle(StackNavigationViewStyle())
-        }
+        }.sheet(isPresented: $showFilterSheet, content: {
+            FilterSheet(listFilters: $listFilters)
+        })
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        PokemonListView()
+        Group {
+            PokemonListView()
+        }
         PokemonListView().preferredColorScheme(.dark)
     }
 }
 
-func filterPokemon(pokemon: [Pokemon], searchText: String) -> [Pokemon] {
-    return pokemon.filter { "\($0)".contains(searchText) || searchText.isEmpty }
+func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> [Pokemon] {
+//    var filteredPokemon = pokemon.filter {"\($0)".contains(searchText) || searchText.isEmpty}
+//    filteredPokemon = filteredPokemon.filter {filters.types.contains($0.type[0]) || filters.types.isEmpty}
+//    return filteredPokemon
+    var filteredPokemon: [Pokemon] = []
+    for mon in pokemon {
+        if mon.name.contains(searchText) || searchText.isEmpty {
+            if (filters.types.count == 1) {
+                if mon.type.count == 1 {
+                    if mon.type[0] == filters.types[0] {
+                        filteredPokemon.append(mon)
+                    }
+                } else {
+                    if mon.type[0] == filters.types[0] || mon.type[1] == filters.types[0] {
+                        filteredPokemon.append(mon)
+                    }
+                }
+            } else if (filters.types.count == 2) {
+                if mon.type.count == 2 {
+                    if (mon.type[0] == filters.types[0] && mon.type[1] == filters.types[1]) || (mon.type[0] == filters.types[1] && mon.type[1] == filters.types[0]) {
+                        filteredPokemon.append(mon)
+                    }
+                }
+            } else {
+                filteredPokemon.append(mon)
+            }
+        }
+    }
+    return filteredPokemon
 }
 
 struct PokemonListGrid: View {
     let pokemon: [Pokemon]
+    let filteredPokemon: [Pokemon]
     let searchText: String
     @Binding var showPokemonDetailView: Bool
-    let filteredPokemon: [Pokemon]
     
-    init(pokemon: [Pokemon], searchText: String, showPokemonDetailView: Binding<Bool>) {
+    init(pokemon: [Pokemon], searchText: String, showPokemonDetailView: Binding<Bool>, listFilters: Filters) {
         self.pokemon = pokemon
         self.searchText = searchText
         self._showPokemonDetailView = showPokemonDetailView
-        self.filteredPokemon = filterPokemon(pokemon: pokemon, searchText: searchText)
+        self.filteredPokemon = filterPokemon(pokemon: pokemon, searchText: searchText, filters: listFilters)
     }
 
     var body: some View {
