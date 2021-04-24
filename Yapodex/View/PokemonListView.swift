@@ -12,7 +12,8 @@ struct PokemonListView: View {
 
     @State private var searchText = ""
     @State private var showFilterSheet = false
-    @State private var listFilters = Filters(types: [])
+    @State private var showSortActionSheet = false
+    @State private var listFilters = Filters(types: [], ordering: .numerical)
     @State private var showPokemonDetailView = false
 
     var body: some View {
@@ -27,16 +28,36 @@ struct PokemonListView: View {
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button(action: {
-                                showFilterSheet.toggle()
+                                showSortActionSheet.toggle()
                             }, label: {
                                 Image(systemName: "arrow.up.arrow.down")
-                                    
+                            })
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                showFilterSheet.toggle()
+                            }, label: {
+                                Image(systemName: "ellipsis.rectangle.fill")
                             })
                         }
                     }
             }.navigationViewStyle(StackNavigationViewStyle())
+//            .accentColor(Color(.systemGray))
         }.sheet(isPresented: $showFilterSheet, content: {
             FilterSheet(listFilters: $listFilters)
+        }).actionSheet(isPresented: $showSortActionSheet, content: {
+            ActionSheet(
+                title: Text("Sort by.."),
+                buttons: [
+                    .default(Text("Pokedex No."), action: {
+                        listFilters.ordering = .numerical
+                    }),
+                    .default(Text("A-Z"), action: {
+                        listFilters.ordering = .alphabetical
+                    }),
+                    .cancel()
+                ]
+            )
         })
     }
 }
@@ -57,7 +78,7 @@ func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> 
     var filteredPokemon: [Pokemon] = []
     for mon in pokemon {
         if mon.name.contains(searchText) || searchText.isEmpty {
-            if (filters.types.count == 1) {
+            if filters.types.count == 1 {
                 if mon.type.count == 1 {
                     if mon.type[0] == filters.types[0] {
                         filteredPokemon.append(mon)
@@ -67,7 +88,7 @@ func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> 
                         filteredPokemon.append(mon)
                     }
                 }
-            } else if (filters.types.count == 2) {
+            } else if filters.types.count == 2 {
                 if mon.type.count == 2 {
                     if (mon.type[0] == filters.types[0] && mon.type[1] == filters.types[1]) || (mon.type[0] == filters.types[1] && mon.type[1] == filters.types[0]) {
                         filteredPokemon.append(mon)
@@ -78,6 +99,14 @@ func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> 
             }
         }
     }
+
+    filteredPokemon.sort { (monA, monB) -> Bool in
+        if filters.ordering == .numerical {
+            return monA.id < monB.id
+        } else {
+            return monA.name < monB.name
+        }
+    }
     return filteredPokemon
 }
 
@@ -86,7 +115,7 @@ struct PokemonListGrid: View {
     let filteredPokemon: [Pokemon]
     let searchText: String
     @Binding var showPokemonDetailView: Bool
-    
+
     init(pokemon: [Pokemon], searchText: String, showPokemonDetailView: Binding<Bool>, listFilters: Filters) {
         self.pokemon = pokemon
         self.searchText = searchText
@@ -101,7 +130,8 @@ struct PokemonListGrid: View {
                     destination: PokemonDetailView(pokemon: filteredPokemon, index: index),
                     label: {
                         PokemonListRow(pokemon: filteredPokemon[index])
-                    }).foregroundColor(Color(.label))
+                    }
+                ).foregroundColor(Color(.label))
             }
         })
     }
@@ -109,7 +139,7 @@ struct PokemonListGrid: View {
 
 struct PokemonListRow: View {
     let pokemon: Pokemon
-    
+
     var body: some View {
         HStack {
             Image("\(pokemon.id)")
@@ -167,7 +197,7 @@ struct SearchBar: View {
                 HStack {
                     Image(systemName: "magnifyingglass")
                     Spacer()
-                    if (searchText != "") {
+                    if searchText != "" {
                         Button(action: {
                             searchText = ""
                         }, label: {

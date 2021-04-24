@@ -9,4 +9,10 @@ import Foundation
 
 struct Filters {
     var types: [PokemonTyping]
+    var ordering: SortOrdering
+}
+
+enum SortOrdering: String {
+    case numerical = "numerical"
+    case alphabetical = "alphabetical"
 }
