@@ -18,11 +18,14 @@ struct FilterSheet: View {
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
-//                    Image(systemName: "xmark")
                     Text("Close")
                 })
             }.padding()
             ScrollView {
+                HStack {
+                    Text("Filters")
+                        .font(.system(size: 26, weight: .bold, design: .monospaced))
+                }
                 TypingFilter(listFilters: $listFilters)
                 GenerationFilter()
             }
@@ -45,10 +48,10 @@ struct TypingFilter: View {
                 HStack {
                     Spacer()
                     Text("Typing")
-                        .font(.system(size: 18, weight: .bold, design: .monospaced))
+                        .font(.system(size: 22, weight: .bold, design: .monospaced))
+                        .padding(.bottom, 4)
                     Spacer()
                 }.padding()
-                .background(Color(.systemGray5))
                 HStack {
                     Spacer()
                     if listFilters.types.count >= 1 {
@@ -75,19 +78,22 @@ struct TypingFilter: View {
                             listFilters.types.remove(at: index)
                         }, label: {
                             TypeIcon(typing: type)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 6.0)
+                                        .stroke(Color.black, lineWidth: 4)
+                                )
                         })
                     } else {
                         Button(action: {
                             listFilters.types.append(type)
                         }, label: {
                             TypeIcon(typing: type)
-                        }).opacity(0.33)
-                            .disabled(listFilters.types.count >= 2)
+                        }).disabled(listFilters.types.count >= 2)
                     }
                 }
             }).padding(.horizontal, 8)
             .padding(.bottom)
-        }
+        }.background(Color(.systemGray5))
     }
 }
 
@@ -100,7 +106,6 @@ struct GenerationFilter: View {
                     .font(.system(size: 18, weight: .bold, design: .monospaced))
                 Spacer()
             }.padding()
-                .background(Color(.systemGray5))
         }
     }
 }

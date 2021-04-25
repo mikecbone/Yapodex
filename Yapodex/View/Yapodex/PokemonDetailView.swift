@@ -55,7 +55,7 @@ struct PokemonImage: View {
                         .resizable()
                         .scaledToFit()
                         .tag(index)
-                        .padding()
+                        .padding(40)
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             HStack {
@@ -73,8 +73,9 @@ struct PokemonImage: View {
                 })
                     .disabled(index >= pokemon.count - 1)
             }.padding()
-        }.background(Color(.systemGray6))
-        .frame(height: 200)
+        }.background(PokemonUtils.PokemonTypingColor(type: pokemon[index].type[0]))
+            .frame(height: 300)
+            .animation(.default)
     }
 }
 
@@ -171,7 +172,7 @@ struct Evolutions: View {
                 Text("Evolves From:")
                     .font(.system(size: 16, weight: .regular, design: .monospaced))
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-                    ForEach(0..<1, id: \.self) { index in
+                    ForEach(0..<1, id: \.self) { _ in
                         NavigationLink(
                             destination: Text("Destination"),
                             label: {
@@ -186,7 +187,7 @@ struct Evolutions: View {
                 Text("Evolves To:")
                     .font(.system(size: 16, weight: .regular, design: .monospaced))
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-                    ForEach(0..<1, id: \.self) { index in
+                    ForEach(0..<1, id: \.self) { _ in
                         NavigationLink(
                             destination: Text("Destination"),
                             label: {
@@ -197,7 +198,7 @@ struct Evolutions: View {
                 })
             }
         }.padding(8)
-        .background(Color(.systemGray6))
+            .background(Color(.systemGray6))
     }
 }
 
@@ -220,20 +221,20 @@ struct PokemonEvolutionRow: View {
 
 struct Moves: View {
     @Binding var displayMode: String
-    
+
     var body: some View {
         VStack {
             Text("Moves")
                 .font(.system(size: 22, weight: .bold, design: .monospaced))
                 .padding(.bottom, 4)
-            Picker("type", selection: $displayMode)  {
+            Picker("type", selection: $displayMode) {
                 Text("Level Up").tag("levelup")
                 Text("TM/HM").tag("tmhm")
                 Text("Egg Moves").tag("eggmoves")
                 Text("Tutor").tag("tutor")
             }.pickerStyle(SegmentedPickerStyle())
             LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-                ForEach(0..<4, id: \.self) { index in
+                ForEach(0..<4, id: \.self) { _ in
                     NavigationLink(
                         destination: Text("Destination"),
                         label: {

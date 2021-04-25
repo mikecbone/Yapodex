@@ -37,7 +37,7 @@ struct MainView: View {
                     Label("Settings", systemImage: selectedTab == 4 ? "gearshape.fill" : "gearshape")
                 }
                 .tag(4)
-        }.accentColor(Color(#colorLiteral(red: 0.8974402547, green: 0.4077255726, blue: 0.2946455479, alpha: 1)))
+        }.accentColor(Color(#colorLiteral(red: 0.8523605514, green: 0.388067469, blue: 0.2917911002, alpha: 1)))
     }
 }
 
