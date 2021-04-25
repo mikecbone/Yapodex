@@ -37,12 +37,13 @@ struct MainView: View {
                     Label("Settings", systemImage: selectedTab == 4 ? "gearshape.fill" : "gearshape")
                 }
                 .tag(4)
-        }
+        }.accentColor(Color(#colorLiteral(red: 0.8974402547, green: 0.4077255726, blue: 0.2946455479, alpha: 1)))
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+        MainView().preferredColorScheme(.dark)
     }
 }

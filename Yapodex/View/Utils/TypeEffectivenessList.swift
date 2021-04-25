@@ -12,30 +12,28 @@ struct TypeEffectivenessList: View {
     @State private var displayMode = "super"
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Picker("type", selection: $displayMode)  {
-                    Text("Super").tag("super")
-                    Text("Resistant").tag("resistant")
-                    Text("Immune").tag("immune")
-                }.pickerStyle(SegmentedPickerStyle())
-                .padding(.top, 8)
-                .padding(.horizontal)
-                ScrollView {
-                    ForEach(PokemonTyping.allCases, id: \.self) { type in
-                        if (displayMode == "super") {
-                            SuperEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
-                        } else if (displayMode == "resistant") {
-                            ResistantEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
-                        } else {
-                            ImmuneEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
-                        }
-                        Divider()
+        VStack {
+            Picker("type", selection: $displayMode)  {
+                Text("Super").tag("super")
+                Text("Resistant").tag("resistant")
+                Text("Immune").tag("immune")
+            }.pickerStyle(SegmentedPickerStyle())
+            .padding(.top, 8)
+            .padding(.horizontal)
+            ScrollView {
+                ForEach(PokemonTyping.allCases, id: \.self) { type in
+                    if (displayMode == "super") {
+                        SuperEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
+                    } else if (displayMode == "resistant") {
+                        ResistantEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
+                    } else {
+                        ImmuneEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
                     }
+                    Divider()
                 }
-            }.navigationTitle("Type Effectiveness")
-            .navigationBarTitleDisplayMode(.inline)
-        }.navigationViewStyle(StackNavigationViewStyle())
+            }
+        }.navigationTitle("Type Effectiveness")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

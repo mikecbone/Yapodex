@@ -13,7 +13,8 @@ struct PokemonListView: View {
     @State private var searchText = ""
     @State private var showFilterSheet = false
     @State private var showSortActionSheet = false
-    @State private var listFilters = Filters(types: [], ordering: .numerical)
+    @State private var showStatActionSheet = false
+    @State private var listFilters = Filters(types: [], ordering: .numerical, isAscending: true)
     @State private var showPokemonDetailView = false
 
     var body: some View {
@@ -42,23 +43,61 @@ struct PokemonListView: View {
                         }
                     }
             }.navigationViewStyle(StackNavigationViewStyle())
-//            .accentColor(Color(.systemGray))
-        }.sheet(isPresented: $showFilterSheet, content: {
-            FilterSheet(listFilters: $listFilters)
-        }).actionSheet(isPresented: $showSortActionSheet, content: {
-            ActionSheet(
-                title: Text("Sort by.."),
-                buttons: [
-                    .default(Text("Pokedex No."), action: {
-                        listFilters.ordering = .numerical
-                    }),
-                    .default(Text("A-Z"), action: {
-                        listFilters.ordering = .alphabetical
-                    }),
-                    .cancel()
-                ]
-            )
-        })
+            Spacer()
+                .sheet(isPresented: $showFilterSheet, content: {
+                    FilterSheet(listFilters: $listFilters)
+                })
+            Spacer()
+                .actionSheet(isPresented: $showSortActionSheet, content: {
+                    ActionSheet(
+                        title: Text("Sort by.."),
+                        buttons: [
+                            .default(Text("Pokedex No."), action: {
+                                listFilters.ordering = .numerical
+                            }),
+                            .default(Text("A-Z"), action: {
+                                listFilters.ordering = .alphabetical
+                            }),
+                            .default(Text("Stat"), action: {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    showStatActionSheet.toggle()
+                                }
+                            }),
+                            .default(Text(listFilters.isAscending ? "Descending" : "Ascending"), action: {
+                                listFilters.isAscending.toggle()
+                            }),
+                            .cancel()
+                        ]
+                    )
+                })
+            Spacer()
+                .actionSheet(isPresented: $showStatActionSheet, content: {
+                    ActionSheet(
+                        title: Text("Sort by."),
+                        buttons: [
+                            .default(Text("HP"), action: {
+                                listFilters.ordering = .hpstat
+                            }),
+                            .default(Text("Attack"), action: {
+                                listFilters.ordering = .atkstat
+                            }),
+                            .default(Text("Defense"), action: {
+                                listFilters.ordering = .defstat
+                            }),
+                            .default(Text("Special Attack"), action: {
+                                listFilters.ordering = .spastat
+                            }),
+                            .default(Text("Special Defense"), action: {
+                                listFilters.ordering = .spdstat
+                            }),
+                            .default(Text("Speed"), action: {
+                                listFilters.ordering = .spestat
+                            }),
+                            .cancel()
+                        ]
+                    )
+                })
+        }
     }
 }
 
@@ -101,12 +140,30 @@ func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> 
     }
 
     filteredPokemon.sort { (monA, monB) -> Bool in
-        if filters.ordering == .numerical {
+        switch filters.ordering {
+        case .numerical:
             return monA.id < monB.id
-        } else {
+        case .alphabetical:
             return monA.name < monB.name
+        case .hpstat:
+            return monA.base.HP < monB.base.HP
+        case .atkstat:
+            return monA.base.ATK < monB.base.ATK
+        case .defstat:
+            return monA.base.DEF < monB.base.DEF
+        case .spastat:
+            return monA.base.SPA < monB.base.SPA
+        case .spdstat:
+            return monA.base.SPD < monB.base.SPD
+        case .spestat:
+            return monA.base.SPE < monB.base.SPE
         }
     }
+    
+    if !filters.isAscending {
+        filteredPokemon.reverse()
+    }
+    
     return filteredPokemon
 }
 
