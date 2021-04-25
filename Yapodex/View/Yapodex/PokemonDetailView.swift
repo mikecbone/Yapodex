@@ -49,6 +49,8 @@ struct PokemonImage: View {
 
     var body: some View {
         ZStack {
+            SpashView(animationType: .circle, color: PokemonUtils.PokemonTypingColor(type: pokemon[index].type[0]))
+                .clipped()
             TabView(selection: $index) {
                 ForEach(pokemon.indices, id: \.self) { index in
                     Image("art__\(String(format: "%03d", pokemon[index].id))")
@@ -73,9 +75,10 @@ struct PokemonImage: View {
                 })
                     .disabled(index >= pokemon.count - 1)
             }.padding()
-        }.background(PokemonUtils.PokemonTypingColor(type: pokemon[index].type[0]))
+        }
+//        .background(PokemonUtils.PokemonTypingColor(type: pokemon[index].type[0]))
             .frame(height: 300)
-            .animation(.default)
+//            .animation(.default)
     }
 }
 
@@ -98,6 +101,9 @@ struct InitialInfo: View {
                 .font(.system(size: 32, weight: .bold, design: .monospaced))
             Text("#\(String(format: "%03d", pokemon.id))")
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
+//            SpashView(animationType: .circle, color: PokemonUtils.PokemonTypingColor(type: pokemon.type[0]))
+//                .frame(height: 100)
+//                .clipped()
         }.padding(8)
     }
 }
