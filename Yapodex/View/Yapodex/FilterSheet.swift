@@ -9,12 +9,23 @@ import SwiftUI
 
 struct FilterSheet: View {
     @Binding var listFilters: Filters
-    @State private var showSheet = false
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        ScrollView {
-            TypingFilter(listFilters: $listFilters)
-            GenerationFilter()
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+//                    Image(systemName: "xmark")
+                    Text("Close")
+                })
+            }.padding()
+            ScrollView {
+                TypingFilter(listFilters: $listFilters)
+                GenerationFilter()
+            }
         }
     }
 }
@@ -30,12 +41,28 @@ struct TypingFilter: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Text("Typing")
-                Spacer()
-            }.padding()
+            ZStack {
+                HStack {
+                    Spacer()
+                    Text("Typing")
+                        .font(.system(size: 18, weight: .bold, design: .monospaced))
+                    Spacer()
+                }.padding()
                 .background(Color(.systemGray5))
+                HStack {
+                    Spacer()
+                    if listFilters.types.count >= 1 {
+                        Button(action: {
+                            listFilters.types = []
+                        }, label: {
+                            Text("Clear")
+                        })
+                        .padding()
+                        .transition(.move(edge: .trailing))
+                        .animation(.spring())
+                    }
+                }
+            }
             LazyVGrid(columns: [
                 GridItem(.flexible()),
                 GridItem(.flexible()),
@@ -70,6 +97,7 @@ struct GenerationFilter: View {
             HStack {
                 Spacer()
                 Text("Generation")
+                    .font(.system(size: 18, weight: .bold, design: .monospaced))
                 Spacer()
             }.padding()
                 .background(Color(.systemGray5))

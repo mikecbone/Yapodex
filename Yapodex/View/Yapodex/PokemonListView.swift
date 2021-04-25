@@ -132,6 +132,7 @@ struct PokemonListGrid: View {
                         PokemonListRow(pokemon: filteredPokemon[index])
                     }
                 ).foregroundColor(Color(.label))
+                Divider().padding(.horizontal, 8)
             }
         })
     }
@@ -189,7 +190,7 @@ struct SearchBar: View {
             .background(Color(.systemGray5))
             .cornerRadius(10)
             .padding(.leading, 16)
-            .padding(.trailing, isSearching ? 4 : 16)
+            .padding(.trailing, isSearching ? CGFloat(4) : CGFloat(16))
             .onTapGesture {
                 self.isSearching = true
             }

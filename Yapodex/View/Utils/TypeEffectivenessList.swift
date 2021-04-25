@@ -8,44 +8,41 @@
 import SwiftUI
 
 struct TypeEffectivenessList: View {
-    // TODO: This should be passed in or whatever
     @ObservedObject private var vm = TypeEffectivenessViewModel()
     @State private var displayMode = "super"
     
     var body: some View {
-        VStack {
-            Picker("type", selection: $displayMode)  {
-                Text("Super").tag("super")
-                Text("Resistant").tag("resistant")
-                Text("Immune").tag("immune")
-            }.pickerStyle(SegmentedPickerStyle())
-            .padding(.top, 8)
-            .padding(.horizontal)
-            ScrollView {
-                ForEach(PokemonTyping.allCases, id: \.self) { type in
-                    if (displayMode == "super") {
-                        SuperEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
-                    } else if (displayMode == "resistant") {
-                        ResistantEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
-                    } else {
-                        ImmuneEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
+        NavigationView {
+            VStack {
+                Picker("type", selection: $displayMode)  {
+                    Text("Super").tag("super")
+                    Text("Resistant").tag("resistant")
+                    Text("Immune").tag("immune")
+                }.pickerStyle(SegmentedPickerStyle())
+                .padding(.top, 8)
+                .padding(.horizontal)
+                ScrollView {
+                    ForEach(PokemonTyping.allCases, id: \.self) { type in
+                        if (displayMode == "super") {
+                            SuperEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
+                        } else if (displayMode == "resistant") {
+                            ResistantEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
+                        } else {
+                            ImmuneEffectiveView(main: type, typeEffectiveness: vm.GetTypeEffectiveness(type: type))
+                        }
+                        Divider()
                     }
-                    Divider()
                 }
-            }
-        }.navigationTitle("Type Effectiveness")
+            }.navigationTitle("Type Effectiveness")
             .navigationBarTitleDisplayMode(.inline)
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct TypeEffectivenessList_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            TypeEffectivenessList()
-        }
-        NavigationView {
-            TypeEffectivenessList().preferredColorScheme(.dark)
-        }
+        TypeEffectivenessList()
+        TypeEffectivenessList().preferredColorScheme(.dark)
     }
 }
 

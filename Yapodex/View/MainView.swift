@@ -8,16 +8,35 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var selectedTab = 0
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             PokemonListView()
                 .tabItem {
-                    Label("Yapodex", systemImage: "list.dash")
+                    Label("Yapodex", systemImage: selectedTab == 0 ? "heart.text.square.fill" : "heart.text.square")
                 }
-            TypeEffectivenessList()
+                .tag(0)
+            MovesList()
                 .tabItem {
-                    Label("Type", systemImage: "list.dash")
+                    Label("Moves", systemImage: selectedTab == 1 ? "bolt.horizontal.circle.fill" : "bolt.horizontal.circle")
                 }
+                .tag(1)
+            AbilitiesList()
+                .tabItem {
+                    Label("Abilities", systemImage: selectedTab == 2 ? "leaf.fill" : "leaf")
+                }
+                .tag(2)
+            UtilsView()
+                .tabItem {
+                    Label("Utils", systemImage: selectedTab == 3 ? "wrench.and.screwdriver.fill" : "wrench.and.screwdriver")
+                }
+                .tag(3)
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: selectedTab == 4 ? "gearshape.fill" : "gearshape")
+                }
+                .tag(4)
         }
     }
 }

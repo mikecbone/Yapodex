@@ -150,6 +150,7 @@ struct Abilities: View {
                                     .font(.system(size: 16, weight: .regular, design: .monospaced))
                                 Text("Strengthens Grass moves to inflict 1.5x damage at 1/3 max HP or less")
                                     .font(.system(size: 14, weight: .regular, design: .monospaced))
+                                    .fixedSize(horizontal: false, vertical: true)
                             }
                             Image(systemName: "chevron.right")
                         }.padding(.bottom)
@@ -166,26 +167,54 @@ struct Evolutions: View {
             Text("Evolutions")
                 .font(.system(size: 22, weight: .bold, design: .monospaced))
                 .padding(.bottom, 4)
-            HStack {
-                VStack {
-                    Text("Evolves From:")
-                    Image("1")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                }
-                Spacer()
-                VStack {
-                    Text("Evolves Into:")
-                    Image("3")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 40, height: 40)
-                }
-                Spacer()
+            VStack(alignment: .leading) {
+                Text("Evolves From:")
+                    .font(.system(size: 16, weight: .regular, design: .monospaced))
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
+                    ForEach(0..<1, id: \.self) { index in
+                        NavigationLink(
+                            destination: Text("Destination"),
+                            label: {
+                                PokemonEvolutionRow()
+                            }
+                        ).foregroundColor(Color(.label))
+                    }
+                })
+            }
+            Divider()
+            VStack(alignment: .leading) {
+                Text("Evolves To:")
+                    .font(.system(size: 16, weight: .regular, design: .monospaced))
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
+                    ForEach(0..<1, id: \.self) { index in
+                        NavigationLink(
+                            destination: Text("Destination"),
+                            label: {
+                                PokemonEvolutionRow()
+                            }
+                        ).foregroundColor(Color(.label))
+                    }
+                })
             }
         }.padding(8)
         .background(Color(.systemGray6))
+    }
+}
+
+struct PokemonEvolutionRow: View {
+    var body: some View {
+        HStack {
+            Image("1")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 40, height: 40)
+            Text("Ivysaur")
+                .font(.system(size: 16, weight: .regular, design: .monospaced))
+            Spacer()
+            TypeIcon(typing: PokemonTyping.grass)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
     }
 }
 
@@ -203,6 +232,37 @@ struct Moves: View {
                 Text("Egg Moves").tag("eggmoves")
                 Text("Tutor").tag("tutor")
             }.pickerStyle(SegmentedPickerStyle())
+            LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
+                ForEach(0..<4, id: \.self) { index in
+                    NavigationLink(
+                        destination: Text("Destination"),
+                        label: {
+                            PokemonMoveRow()
+                        }
+                    ).foregroundColor(Color(.label))
+                    Divider()
+                }
+            })
         }.padding(8)
+    }
+}
+
+struct PokemonMoveRow: View {
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Leech Seed")
+                    .font(.system(size: 16, weight: .regular, design: .monospaced))
+                Text("Level 1")
+                    .font(.system(size: 12, weight: .light, design: .monospaced))
+            }
+            Spacer()
+            Text("50")
+                .padding(.horizontal)
+                .font(.system(size: 16, weight: .regular, design: .monospaced))
+            TypeIcon(typing: PokemonTyping.grass)
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
     }
 }
