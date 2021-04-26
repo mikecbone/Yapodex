@@ -43,43 +43,7 @@ struct PokemonTypeEffectiveness: View {
     }
 }
 
-struct EmptyTypeIcon: View {
-    var body: some View {
-        Text("NONE")
-            .font(.system(size: 14, weight: .bold, design: .monospaced))
-            .frame(width: 66)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-            .foregroundColor(.white)
-            .cornerRadius(6.0)
-    }
-}
-
-struct PokemonTypeEffectiveness_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            PokemonTypeEffectiveness(
-                pokemon: .init(
-                    id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
-                        HP: 50, ATK: 50, DEF: 50, SPA: 50, SPD: 50, SPE: 50
-                    )
-                )
-            )
-        }
-        NavigationView {
-            PokemonTypeEffectiveness(
-                pokemon: .init(
-                    id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
-                        HP: 50, ATK: 50, DEF: 50, SPA: 50, SPD: 50, SPE: 50
-                    )
-                )
-            ).preferredColorScheme(.dark)
-        }
-    }
-}
-
-struct EffectivenessChart: View {
+private struct EffectivenessChart: View {
     let title: String
     let effectiveNumber: String
     let types: [PokemonTyping]
@@ -108,5 +72,28 @@ struct EffectivenessChart: View {
                 }
             }).padding(.horizontal, 8)
         }.padding(.bottom, 8)
+    }
+}
+
+struct PokemonTypeEffectiveness_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView {
+            PokemonTypeEffectiveness(
+                pokemon: .init(
+                    id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
+                        HP: 50, ATK: 50, DEF: 50, SPA: 50, SPD: 50, SPE: 50
+                    )
+                )
+            )
+        }
+        NavigationView {
+            PokemonTypeEffectiveness(
+                pokemon: .init(
+                    id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
+                        HP: 50, ATK: 50, DEF: 50, SPA: 50, SPD: 50, SPE: 50
+                    )
+                )
+            ).preferredColorScheme(.dark)
+        }
     }
 }

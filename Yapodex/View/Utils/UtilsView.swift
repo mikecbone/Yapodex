@@ -11,7 +11,7 @@ struct UtilsView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
+                LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 8, content: {
                     TypeCheckerRow()
                     Divider().padding(.horizontal, 8)
                     TeamBuilderRow()
@@ -32,7 +32,7 @@ struct UtilsView_Previews: PreviewProvider {
     }
 }
 
-struct TypeCheckerRow: View {
+private struct TypeCheckerRow: View {
     var body: some View {
         NavigationLink(
             destination: TypeEffectivenessList(),
@@ -57,7 +57,7 @@ struct TypeCheckerRow: View {
     }
 }
 
-struct TeamBuilderRow: View {
+private struct TeamBuilderRow: View {
     var body: some View {
         NavigationLink(
             destination: Text("Hello"),
@@ -82,7 +82,7 @@ struct TeamBuilderRow: View {
     }
 }
 
-struct ComparePokemonRow: View {
+private struct ComparePokemonRow: View {
     var body: some View {
         NavigationLink(
             destination: Text("Hello"),
@@ -107,7 +107,7 @@ struct ComparePokemonRow: View {
     }
 }
 
-struct FavouritePokemonRow: View {
+private struct FavouritePokemonRow: View {
     var body: some View {
         NavigationLink(
             destination: Text("Hello"),

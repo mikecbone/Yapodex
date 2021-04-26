@@ -44,7 +44,7 @@ struct TypeEffectivenessList_Previews: PreviewProvider {
     }
 }
 
-struct SuperEffectiveView: View {
+private struct SuperEffectiveView: View {
     let main: PokemonTyping
     let typeEffectiveness: TypeEffectiveness
     
@@ -84,7 +84,7 @@ struct SuperEffectiveView: View {
     }
 }
 
-struct ResistantEffectiveView: View {
+private struct ResistantEffectiveView: View {
     let main: PokemonTyping
     let typeEffectiveness: TypeEffectiveness
     
@@ -124,7 +124,7 @@ struct ResistantEffectiveView: View {
     }
 }
 
-struct ImmuneEffectiveView: View {
+private struct ImmuneEffectiveView: View {
     let main: PokemonTyping
     let typeEffectiveness: TypeEffectiveness
     

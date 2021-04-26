@@ -14,7 +14,7 @@ struct PokemonListView: View {
     @State private var showFilterSheet = false
     @State private var showSortActionSheet = false
     @State private var showStatActionSheet = false
-    @State private var listFilters = Filters(types: [], ordering: .numerical, isAscending: true)
+    @State private var listFilters = Filters(types: [], ordering: .numerical, isAscending: true, generation: "", evYield: "")
     @State private var showPokemonDetailView = false
 
     var body: some View {
@@ -23,7 +23,9 @@ struct PokemonListView: View {
                 ScrollView {
                     VStack {
                         SearchBar(searchText: $searchText)
+                        SearchFilters(filters: $listFilters)
                         PokemonListGrid(pokemon: vm.pokedex?.pokedex ?? [], searchText: searchText, showPokemonDetailView: $showPokemonDetailView, listFilters: listFilters)
+                            .animation(.spring())
                     }
                 }.navigationTitle("Yapodex")
                     .toolbar {
@@ -110,7 +112,81 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> [Pokemon] {
+private struct SearchFilters: View {
+    @Binding var filters: Filters
+    
+    var body: some View {
+        HStack {
+            ForEach(filters.types, id: \.self) { filter in
+                HStack {
+                    Text(filter.rawValue.uppercased())
+                        .font(.system(size: 14, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white)
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 8, height: 8)
+                        .font(Font.caption.bold())
+                        .foregroundColor(.white)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(PokemonUtils.PokemonTypingColor(type: filter))
+                .cornerRadius(6.0)
+                .padding(.top, 8)
+                .animation(.spring())
+                .onTapGesture(perform: {
+                    guard let index = filters.types.firstIndex(of: filter) else { return }
+                    filters.types.remove(at: index)
+                })
+            }
+            if !filters.generation.isEmpty {
+                HStack {
+                    Text(filters.generation)
+                        .font(.system(size: 14, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white)
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 8, height: 8)
+                        .font(Font.caption.bold())
+                        .foregroundColor(.white)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                .cornerRadius(6.0)
+                .padding(.top, 8)
+                .animation(.spring())
+                .onTapGesture(perform: {
+                    filters.generation = ""
+                })
+            }
+            if !filters.evYield.isEmpty {
+                HStack {
+                    Text(filters.evYield)
+                        .font(.system(size: 14, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white)
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 8, height: 8)
+                        .font(Font.caption.bold())
+                        .foregroundColor(.white)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                .cornerRadius(6.0)
+                .padding(.top, 8)
+                .animation(.spring())
+                .onTapGesture(perform: {
+                    filters.evYield = ""
+                })
+            }
+        }
+    }
+}
+
+
+private func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> [Pokemon] {
 //    var filteredPokemon = pokemon.filter {"\($0)".contains(searchText) || searchText.isEmpty}
 //    filteredPokemon = filteredPokemon.filter {filters.types.contains($0.type[0]) || filters.types.isEmpty}
 //    return filteredPokemon
@@ -167,7 +243,7 @@ func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> 
     return filteredPokemon
 }
 
-struct PokemonListGrid: View {
+private struct PokemonListGrid: View {
     let pokemon: [Pokemon]
     let filteredPokemon: [Pokemon]
     let searchText: String
@@ -195,7 +271,7 @@ struct PokemonListGrid: View {
     }
 }
 
-struct PokemonListRow: View {
+private struct PokemonListRow: View {
     let pokemon: Pokemon
 
     var body: some View {
@@ -217,22 +293,7 @@ struct PokemonListRow: View {
     }
 }
 
-struct TypeIcon: View {
-    let typing: PokemonTyping
-
-    var body: some View {
-        Text(typing.rawValue.uppercased())
-            .font(.system(size: 14, weight: .bold, design: .monospaced))
-            .frame(width: 66)
-            .padding(.horizontal, 8)
-            .padding(.vertical, 4)
-            .background(PokemonUtils.PokemonTypingColor(type: typing))
-            .foregroundColor(.white)
-            .cornerRadius(6.0)
-    }
-}
-
-struct SearchBar: View {
+private struct SearchBar: View {
     @Binding var searchText: String
     @State private var isSearching = false
 

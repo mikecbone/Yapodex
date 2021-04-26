@@ -43,21 +43,23 @@ struct PokemonDetailView_Previews: PreviewProvider {
     }
 }
 
-struct PokemonImage: View {
+private struct PokemonImage: View {
     let pokemon: [Pokemon]
     @Binding var index: Int
 
     var body: some View {
         ZStack {
             SpashView(animationType: .circle, color: PokemonUtils.PokemonTypingColor(type: pokemon[index].type[0]))
+                .ignoresSafeArea()
                 .clipped()
+            Rectangle().foregroundColor(.white).opacity(0.42)
             TabView(selection: $index) {
                 ForEach(pokemon.indices, id: \.self) { index in
                     Image("art__\(String(format: "%03d", pokemon[index].id))")
                         .resizable()
                         .scaledToFit()
                         .tag(index)
-                        .padding(40)
+                        .padding(42)
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             HStack {
@@ -65,24 +67,26 @@ struct PokemonImage: View {
                     index -= 1
                 }, label: {
                     Image(systemName: "chevron.backward")
+                        .imageScale(.large)
                 })
+                .padding()
                     .disabled(index <= 0)
                 Spacer()
                 Button(action: {
                     index += 1
                 }, label: {
                     Image(systemName: "chevron.forward")
+                        .imageScale(.large)
                 })
+                .padding()
                     .disabled(index >= pokemon.count - 1)
-            }.padding()
+            }
         }
-//        .background(PokemonUtils.PokemonTypingColor(type: pokemon[index].type[0]))
-            .frame(height: 300)
-//            .animation(.default)
+        .frame(height: 272)
     }
 }
 
-struct InitialInfo: View {
+private struct InitialInfo: View {
     let pokemon: Pokemon
 
     var body: some View {
@@ -101,14 +105,11 @@ struct InitialInfo: View {
                 .font(.system(size: 32, weight: .bold, design: .monospaced))
             Text("#\(String(format: "%03d", pokemon.id))")
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
-//            SpashView(animationType: .circle, color: PokemonUtils.PokemonTypingColor(type: pokemon.type[0]))
-//                .frame(height: 100)
-//                .clipped()
         }.padding(8)
     }
 }
 
-struct BaseStats: View {
+private struct BaseStats: View {
     let pokemon: Pokemon
 
     var body: some View {
@@ -131,17 +132,18 @@ struct BaseStats: View {
     }
 }
 
-struct BaseStatBar: View {
+private struct BaseStatBar: View {
     let statName: String
     let statValue: Double
+    
     var body: some View {
-        ProgressView("\(statName)  \(String(format: "%.0f", statValue))", value: statValue, total: 150.0)
+        ProgressView("\(statName)  \(String(format: "%.0f", statValue))", value: min(statValue, 150.0), total: 150.0)
             .progressViewStyle(LinearProgressViewStyle(tint: PokemonUtils.PokemonStatsColor(stat: Int(statValue))))
             .animation(.default)
     }
 }
 
-struct Abilities: View {
+private struct Abilities: View {
     var body: some View {
         VStack {
             Text("Abilities")
@@ -168,7 +170,7 @@ struct Abilities: View {
     }
 }
 
-struct Evolutions: View {
+private struct Evolutions: View {
     var body: some View {
         VStack {
             Text("Evolutions")
@@ -208,7 +210,7 @@ struct Evolutions: View {
     }
 }
 
-struct PokemonEvolutionRow: View {
+private struct PokemonEvolutionRow: View {
     var body: some View {
         HStack {
             Image("1")
@@ -225,7 +227,7 @@ struct PokemonEvolutionRow: View {
     }
 }
 
-struct Moves: View {
+private struct Moves: View {
     @Binding var displayMode: String
 
     var body: some View {
@@ -254,7 +256,7 @@ struct Moves: View {
     }
 }
 
-struct PokemonMoveRow: View {
+private struct PokemonMoveRow: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {

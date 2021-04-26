@@ -11,6 +11,8 @@ struct Filters {
     var types: [PokemonTyping]
     var ordering: SortOrdering
     var isAscending: Bool
+    var generation: String
+    var evYield: String
 }
 
 enum SortOrdering: String {

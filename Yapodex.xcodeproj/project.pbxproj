@@ -13,6 +13,8 @@
 		EA37A6FA2632F47A0050388B /* KantoTypeEffectiveness.json in Resources */ = {isa = PBXBuildFile; fileRef = EA37A6F52632F1260050388B /* KantoTypeEffectiveness.json */; };
 		EA37A6FF26331F030050388B /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37A6FE26331F030050388B /* Filters.swift */; };
 		EA477D9B26360B560018C741 /* SplashAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA477D9A26360B560018C741 /* SplashAnimation.swift */; };
+		EA6531B52637059C003D0444 /* StringDropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6531B42637059C003D0444 /* StringDropdownPicker.swift */; };
+		EA6531B726370659003D0444 /* TypeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6531B626370659003D0444 /* TypeIcon.swift */; };
 		EA944DA9262F716C00CDDF1C /* YapodexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA944DA8262F716C00CDDF1C /* YapodexApp.swift */; };
 		EA944DAB262F716C00CDDF1C /* PokemonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA944DAA262F716C00CDDF1C /* PokemonListView.swift */; };
 		EA944DAD262F716D00CDDF1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA944DAC262F716D00CDDF1C /* Assets.xcassets */; };
@@ -37,6 +39,8 @@
 		EA37A6F72632F2EC0050388B /* TypeEffectivenessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeEffectivenessViewModel.swift; sourceTree = "<group>"; };
 		EA37A6FE26331F030050388B /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		EA477D9A26360B560018C741 /* SplashAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimation.swift; sourceTree = "<group>"; };
+		EA6531B42637059C003D0444 /* StringDropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDropdownPicker.swift; sourceTree = "<group>"; };
+		EA6531B626370659003D0444 /* TypeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeIcon.swift; sourceTree = "<group>"; };
 		EA944DA5262F716C00CDDF1C /* Yapodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yapodex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA944DA8262F716C00CDDF1C /* YapodexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YapodexApp.swift; sourceTree = "<group>"; };
 		EA944DAA262F716C00CDDF1C /* PokemonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListView.swift; sourceTree = "<group>"; };
@@ -67,6 +71,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA6531B326370584003D0444 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				EA477D9A26360B560018C741 /* SplashAnimation.swift */,
+				EA6531B42637059C003D0444 /* StringDropdownPicker.swift */,
+				EA6531B626370659003D0444 /* TypeIcon.swift */,
+			);
+			path = Reusable;
+			sourceTree = "<group>";
+		};
 		EA944D9C262F716C00CDDF1C = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +139,7 @@
 				EABD5E782635AF650031F72D /* Abilities */,
 				EABD5E792635AF6A0031F72D /* Utils */,
 				EABD5E7A2635AF6D0031F72D /* Settings */,
+				EA6531B326370584003D0444 /* Reusable */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,7 +148,6 @@
 			isa = PBXGroup;
 			children = (
 				EA944DC0262F810A00CDDF1C /* PokemonUtils.swift */,
-				EA477D9A26360B560018C741 /* SplashAnimation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -278,6 +292,7 @@
 				EA989E622630B3E300DC0860 /* MainView.swift in Sources */,
 				EA944DAB262F716C00CDDF1C /* PokemonListView.swift in Sources */,
 				EABD5E752635AF540031F72D /* UtilsView.swift in Sources */,
+				EA6531B52637059C003D0444 /* StringDropdownPicker.swift in Sources */,
 				EA37A6F02632BEA60050388B /* PokemonTypeEffectiveness.swift in Sources */,
 				EA944DA9262F716C00CDDF1C /* YapodexApp.swift in Sources */,
 				EA944DC1262F810A00CDDF1C /* PokemonUtils.swift in Sources */,
@@ -287,6 +302,7 @@
 				EA989E5A2630A36500DC0860 /* FilterSheet.swift in Sources */,
 				EA477D9B26360B560018C741 /* SplashAnimation.swift in Sources */,
 				EABD5E6F263590830031F72D /* MovesList.swift in Sources */,
+				EA6531B726370659003D0444 /* TypeIcon.swift in Sources */,
 				EA37A6F82632F2EC0050388B /* TypeEffectivenessViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
