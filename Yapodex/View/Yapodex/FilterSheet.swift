@@ -56,7 +56,7 @@ private struct TypingFilter: View {
                 Spacer()
                 ForEach(listFilters.types, id: \.self) { type in
                     Text(type.rawValue)
-                        .foregroundColor(Color.black.opacity(0.6))
+                        .foregroundColor(Color(.label).opacity(0.6))
                 }
                 Image(systemName: "chevron.right")
                     .resizable()
@@ -66,18 +66,23 @@ private struct TypingFilter: View {
             .font(.system(size: 16, weight: .medium, design: .monospaced))
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(Color.white)
+            .background(Color(UIColor.systemBackground))
             .onTapGesture {
                 withAnimation(Animation.spring().speed(2)) {
-                    showOptions = true
+                    showOptions.toggle()
                 }
             }
             if showOptions {
                 VStack(alignment: .leading, spacing: 4, content: {
-                    Text("Types")
+                    Text("Select Types")
                         .font(.system(size: 16, weight: .semibold, design: .monospaced))
                         .foregroundColor(Color(.label))
                         .padding(.bottom)
+                        .onTapGesture {
+                            withAnimation(Animation.spring().speed(2)) {
+                                showOptions.toggle()
+                            }
+                        }
                     LazyVGrid(columns: [
                                 GridItem(.flexible()),
                                 GridItem(.flexible()),
@@ -86,11 +91,13 @@ private struct TypingFilter: View {
                         ForEach(PokemonTyping.allCases, id: \.self) { type in
                             if listFilters.types.contains(type) {
                                 Button(action: {
-                                    withAnimation(Animation.spring().speed(2)) {
-                                        showOptions = false
-                                    }
                                     guard let index = listFilters.types.firstIndex(of: type) else { return }
                                     listFilters.types.remove(at: index)
+                                    if (listFilters.types.count == 0) {
+                                        withAnimation(Animation.spring().speed(2)) {
+                                            showOptions = false
+                                        }
+                                    }
                                 }, label: {
                                     TypeIcon(typing: type)
                                         .overlay(
@@ -101,8 +108,10 @@ private struct TypingFilter: View {
                             } else {
                                 Button(action: {
                                     listFilters.types.append(type)
-                                    withAnimation(Animation.spring().speed(2)) {
-                                        showOptions = false
+                                    if (listFilters.types.count == 2) {
+                                        withAnimation(Animation.spring().speed(2)) {
+                                            showOptions = false
+                                        }
                                     }
                                 }, label: {
                                     TypeIcon(typing: type)

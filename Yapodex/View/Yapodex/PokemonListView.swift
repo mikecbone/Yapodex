@@ -162,7 +162,7 @@ private struct SearchFilters: View {
             }
             if !filters.evYield.isEmpty {
                 HStack {
-                    Text(filters.evYield)
+                    Text("\(filters.evYield) EVs")
                         .font(.system(size: 14, weight: .bold, design: .monospaced))
                         .foregroundColor(.white)
                     Image(systemName: "xmark")

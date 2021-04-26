@@ -20,7 +20,7 @@ struct StringDropdownPicker: View {
                 Text(title)
                 Spacer()
                 Text(selection)
-                    .foregroundColor(Color.black.opacity(0.6))
+                    .foregroundColor(Color(.label).opacity(0.6))
                 Image(systemName: "chevron.right")
                     .resizable()
                     .scaledToFit()
@@ -29,19 +29,24 @@ struct StringDropdownPicker: View {
             .font(.system(size: 16, weight: .medium, design: .monospaced))
             .padding(.horizontal, 12)
             .padding(.vertical, 8)
-            .background(Color.white)
+            .background(Color(UIColor.systemBackground))
             .onTapGesture {
                 withAnimation(Animation.spring().speed(2)) {
-                    showOptions = true
+                    showOptions.toggle()
                 }
             }
             
             if showOptions {
                 VStack(alignment: .leading, spacing: 4, content: {
-                    Text(title)
+                    Text("Select \(title)")
                         .font(.system(size: 16, weight: .semibold, design: .monospaced))
                         .foregroundColor(Color(.label))
                         .padding(.bottom, 8)
+                        .onTapGesture {
+                            withAnimation(Animation.spring().speed(2)) {
+                                showOptions.toggle()
+                            }
+                        }
                     LazyVGrid(columns: [
                                 GridItem(.flexible()),
                                 GridItem(.flexible()),
@@ -50,7 +55,7 @@ struct StringDropdownPicker: View {
                         ForEach(options.indices, id: \.self) { index in
                             if options[index] == selection {
                                 Text(options[index])
-                                    .font(.system(size: 12, weight: .regular, design: .monospaced))
+                                    .font(.system(size: 14, weight: .regular, design: .monospaced))
                                     .padding(.vertical, 8)
                                     .padding(.horizontal, 12)
                                     .background(Color(.label).opacity(0.2))
@@ -63,7 +68,7 @@ struct StringDropdownPicker: View {
                                     }
                             } else {
                                 Text(options[index])
-                                    .font(.system(size: 12, weight: .regular, design: .monospaced))
+                                    .font(.system(size: 14, weight: .regular, design: .monospaced))
                                     .padding(.vertical, 8)
                                     .padding(.horizontal, 12)
                                     .onTapGesture {
