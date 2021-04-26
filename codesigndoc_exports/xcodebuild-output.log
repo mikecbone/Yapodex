@@ -1,0 +1,22 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project /Users/mikecbone/Documents/XCode/Yapodex/Yapodex.xcodeproj -scheme Yapodex clean archive -archivePath /var/folders/pn/q9lsxcxd2bs12yknfvnqxs800000gn/T/__codesigndoc__344161367/Yapodex.xcarchive
+
+User defaults from command line:
+    IDEArchivePathOverride = /var/folders/pn/q9lsxcxd2bs12yknfvnqxs800000gn/T/__codesigndoc__344161367/Yapodex.xcarchive
+    IDEPackageSupportUseBuiltinSCM = YES
+
+note: Using new build system
+note: Building targets in parallel
+note: Build preparation complete
+
+** CLEAN SUCCEEDED ** [0.052 sec]
+
+note: Using new build system
+note: Building targets in parallel
+note: Planning build
+note: Analyzing workspace
+note: Constructing build description
+note: Build preparation complete
+error: Provisioning profile "iOS Team Provisioning Profile: *" doesn't include the currently selected device "Mike’s Mac mini" (identifier B7F319D4-65FA-5C6D-AFF6-26E152C42DFF). (in target 'Yapodex' from project 'Yapodex')
+
+** ARCHIVE FAILED **
