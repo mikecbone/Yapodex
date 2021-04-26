@@ -290,6 +290,11 @@ private struct PokemonListRow: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
+        .contextMenu {
+            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                Label("Add To Favourites", systemImage: "star.fill")
+            })
+        }
     }
 }
 

@@ -14,12 +14,14 @@ struct PokemonDetailView: View {
 
     var body: some View {
         ScrollView {
-            PokemonImage(pokemon: pokemon, index: $index)
-            InitialInfo(pokemon: pokemon[index])
-            BaseStats(pokemon: pokemon[index])
-            Abilities()
-            Evolutions()
-            Moves(displayMode: $displayMode)
+            ScrollViewReader { scrollView in
+                PokemonImage(pokemon: pokemon, index: $index).id(0)
+                InitialInfo(pokemon: pokemon[index])
+                BaseStats(pokemon: pokemon[index])
+                Abilities()
+                Evolutions(index: $index, scrollView: scrollView)
+                Moves(displayMode: $displayMode)
+            }
         }.navigationTitle("Details")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -171,6 +173,9 @@ private struct Abilities: View {
 }
 
 private struct Evolutions: View {
+    @Binding var index: Int
+    let scrollView: ScrollViewProxy
+    
     var body: some View {
         VStack {
             Text("Evolutions")
@@ -181,12 +186,14 @@ private struct Evolutions: View {
                     .font(.system(size: 16, weight: .regular, design: .monospaced))
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
                     ForEach(0..<1, id: \.self) { _ in
-                        NavigationLink(
-                            destination: Text("Destination"),
-                            label: {
-                                PokemonEvolutionRow()
+                        Button(action: {
+                            index = 0
+                            withAnimation {
+                                scrollView.scrollTo(0)
                             }
-                        ).foregroundColor(Color(.label))
+                        }, label: {
+                            PokemonEvolutionRow()
+                        }).foregroundColor(Color(.label))
                     }
                 })
             }
@@ -196,12 +203,14 @@ private struct Evolutions: View {
                     .font(.system(size: 16, weight: .regular, design: .monospaced))
                 LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
                     ForEach(0..<1, id: \.self) { _ in
-                        NavigationLink(
-                            destination: Text("Destination"),
-                            label: {
-                                PokemonEvolutionRow()
+                        Button(action: {
+                            index = 2
+                            withAnimation {
+                                scrollView.scrollTo(0)
                             }
-                        ).foregroundColor(Color(.label))
+                        }, label: {
+                            PokemonEvolutionRow()
+                        }).foregroundColor(Color(.label))
                     }
                 })
             }
