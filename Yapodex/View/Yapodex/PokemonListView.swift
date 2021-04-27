@@ -15,7 +15,7 @@ struct PokemonListView: View {
     @State private var showSortActionSheet = false
     @State private var showStatActionSheet = false
     @State private var listFilters = Filters(
-        types: [], ordering: .numerical, isAscending: true, generation: "", evYield: ""
+        types: [], ordering: .numerical, isAscending: true, generation: [], evYield: []
     )
     @State private var showPokemonDetailView = false
 
@@ -118,6 +118,13 @@ private struct SearchFilters: View {
     @Binding var filters: Filters
     
     var body: some View {
+//        LazyVGrid(columns: [
+//            GridItem(.flexible()),
+//            GridItem(.flexible()),
+//            GridItem(.flexible())
+//        ], alignment: .center, spacing: nil, content: {
+//
+//        }).padding(.horizontal)
         HStack {
             ForEach(filters.types, id: \.self) { filter in
                 HStack {
@@ -141,47 +148,55 @@ private struct SearchFilters: View {
                     filters.types.remove(at: index)
                 })
             }
+        }
+        HStack {
             if !filters.generation.isEmpty {
-                HStack {
-                    Text(filters.generation)
-                        .font(.system(size: 14, weight: .bold, design: .monospaced))
-                        .foregroundColor(.white)
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .frame(width: 8, height: 8)
-                        .font(Font.caption.bold())
-                        .foregroundColor(.white)
+                ForEach(filters.generation, id: \.self) { generation in
+                    HStack {
+                        Text(generation)
+                            .font(.system(size: 14, weight: .bold, design: .monospaced))
+                            .foregroundColor(.white)
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 8, height: 8)
+                            .font(Font.caption.bold())
+                            .foregroundColor(.white)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                    .cornerRadius(6.0)
+                    .padding(.top, 8)
+                    .animation(.spring())
+                    .onTapGesture(perform: {
+                        guard let index = filters.generation.firstIndex(of: generation) else { return }
+                        filters.generation.remove(at: index)
+                    })
                 }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                .cornerRadius(6.0)
-                .padding(.top, 8)
-                .animation(.spring())
-                .onTapGesture(perform: {
-                    filters.generation = ""
-                })
             }
             if !filters.evYield.isEmpty {
-                HStack {
-                    Text("\(filters.evYield) EVs")
-                        .font(.system(size: 14, weight: .bold, design: .monospaced))
-                        .foregroundColor(.white)
-                    Image(systemName: "xmark")
-                        .resizable()
-                        .frame(width: 8, height: 8)
-                        .font(Font.caption.bold())
-                        .foregroundColor(.white)
+                ForEach(filters.evYield, id: \.self) { ev in
+                    HStack {
+                        Text("\(ev) EVs")
+                            .font(.system(size: 14, weight: .bold, design: .monospaced))
+                            .foregroundColor(.white)
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .frame(width: 8, height: 8)
+                            .font(Font.caption.bold())
+                            .foregroundColor(.white)
+                    }
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                    .cornerRadius(6.0)
+                    .padding(.top, 8)
+                    .animation(.spring())
+                    .onTapGesture(perform: {
+                        guard let index = filters.evYield.firstIndex(of: ev) else { return }
+                        filters.evYield.remove(at: index)
+                    })
                 }
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                .cornerRadius(6.0)
-                .padding(.top, 8)
-                .animation(.spring())
-                .onTapGesture(perform: {
-                    filters.evYield = ""
-                })
             }
         }
     }
@@ -193,7 +208,7 @@ private func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filt
     for mon in pokemon {
         if filterBySearch(pokemon: mon, searchText: searchText) {
             if filterByTypes(pokemon: mon, types: filters.types) {
-                if filterByGen(id: mon.id, genFilter: filters.generation) {
+                if filterByGen(id: mon.id, genFilters: filters.generation) {
                     filteredPokemon.append(mon)
                 }
             }
@@ -257,36 +272,37 @@ private func filterByTypes(pokemon: Pokemon, types: [PokemonTyping]) -> Bool {
     return false
 }
 
-private func filterByGen(id: Int, genFilter: String) -> Bool {
-    let PokemonGeneration = PokemonGenerationFilter(rawValue: genFilter) ?? PokemonGenerationFilter.none
-    switch PokemonGeneration {
-    case .gen1:
-        if id > 0 && id <= 151 { return true }
-        return false
-    case .gen2:
-        if id > 151 && id <= 251 { return true }
-        return false
-    case .gen3:
-        if id > 251 && id <= 386 { return true }
-        return false
-    case .gen4:
-        if id > 386 && id <= 493 { return true }
-        return false
-    case .gen5:
-        if id > 493 && id <= 649 { return true }
-        return false
-    case .gen6:
-        if id > 649 && id <= 721 { return true }
-        return false
-    case .gen7:
-        if id > 721 && id <= 809 { return true }
-        return false
-    case .gen8:
-        if id > 809 && id <= 898 { return true }
-        return false
-    case .none:
-        return true
-    }
+private func filterByGen(id: Int, genFilters: [String]) -> Bool {
+//    let PokemonGeneration = PokemonGenerationFilter(rawValue: genFilter) ?? PokemonGenerationFilter.none
+//    switch PokemonGeneration {
+//    case .gen1:
+//        if id > 0 && id <= 151 { return true }
+//        return false
+//    case .gen2:
+//        if id > 151 && id <= 251 { return true }
+//        return false
+//    case .gen3:
+//        if id > 251 && id <= 386 { return true }
+//        return false
+//    case .gen4:
+//        if id > 386 && id <= 493 { return true }
+//        return false
+//    case .gen5:
+//        if id > 493 && id <= 649 { return true }
+//        return false
+//    case .gen6:
+//        if id > 649 && id <= 721 { return true }
+//        return false
+//    case .gen7:
+//        if id > 721 && id <= 809 { return true }
+//        return false
+//    case .gen8:
+//        if id > 809 && id <= 898 { return true }
+//        return false
+//    case .none:
+//        return true
+//    }
+    return true
 }
 
 private struct PokemonListGrid: View {

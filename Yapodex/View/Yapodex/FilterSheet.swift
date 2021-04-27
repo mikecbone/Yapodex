@@ -40,10 +40,10 @@ struct FilterSheet: View {
                 TypingFilter(listFilters: $listFilters)
                 Divider()
                     .padding(.horizontal)
-                StringDropdownPicker(title: "Generation", selection: $listFilters.generation, options: getPokemonGenerationStrings())
+                StringDropdownPicker(title: "Generation", options: getPokemonGenerationStrings(), limit: 1, selections: $listFilters.generation)
                 Divider()
                     .padding(.horizontal)
-                StringDropdownPicker(title: "EV Yield", selection: $listFilters.evYield, options: getPokemonEvStrings())
+                StringDropdownPicker(title: "EV Yield", options: getPokemonEvStrings(), limit: 1, selections: $listFilters.evYield)
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
@@ -71,7 +71,7 @@ private struct TypingFilter: View {
                 Text("Types")
                 Spacer()
                 ForEach(listFilters.types, id: \.self) { type in
-                    Text(type.rawValue)
+                    Text(type.rawValue.uppercased())
                         .foregroundColor(Color(.label).opacity(0.6))
                 }
                 Image(systemName: "chevron.right")
@@ -125,7 +125,7 @@ private struct TypingFilter: View {
                             } else {
                                 Button(action: {
                                     listFilters.types.append(type)
-                                    if (listFilters.types.count == 2) {
+                                    if (listFilters.types.count >= 2) {
                                         withAnimation(Animation.spring().speed(2)) {
                                             selectionFeedback.selectionChanged()
                                             showOptions = false
@@ -133,7 +133,9 @@ private struct TypingFilter: View {
                                     }
                                 }, label: {
                                     TypeIcon(typing: type)
-                                }).disabled(listFilters.types.count >= 2)
+                                })
+                                .disabled(listFilters.types.count >= 2)
+                                .opacity(listFilters.types.count >= 2 ? 0.66 : 1.0)
                             }
                         }
                     })
