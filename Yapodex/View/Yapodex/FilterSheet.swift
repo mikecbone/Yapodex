@@ -11,6 +11,24 @@ struct FilterSheet: View {
     @Binding var listFilters: Filters
     @Environment(\.presentationMode) var presentationMode
     @State private var typeSelection: PokemonTyping = PokemonTyping.normal
+    
+    func getPokemonGenerationStrings() -> [String] {
+        var returnArray: [String] = []
+        for generation in PokemonGenerationFilter.allCases {
+            if generation.rawValue.isEmpty { continue }
+            returnArray.append(generation.rawValue)
+        }
+        return returnArray
+    }
+    
+    func getPokemonEvStrings() -> [String] {
+        var returnArray: [String] = []
+        for ev in PokemonEvFilter.allCases {
+            if ev.rawValue.isEmpty { continue }
+            returnArray.append(ev.rawValue)
+        }
+        return returnArray
+    }
 
     var body: some View {
         VStack {
@@ -22,10 +40,10 @@ struct FilterSheet: View {
                 TypingFilter(listFilters: $listFilters)
                 Divider()
                     .padding(.horizontal)
-                StringDropdownPicker(title: "Generation", selection: $listFilters.generation, options: ["Gen 1", "Gen 2", "Gen 3", "Gen 4", "Gen 5", "Gen 6", "Gen 7", "Gen 8"])
+                StringDropdownPicker(title: "Generation", selection: $listFilters.generation, options: getPokemonGenerationStrings())
                 Divider()
                     .padding(.horizontal)
-                StringDropdownPicker(title: "EV Yield", selection: $listFilters.evYield, options: ["HP", "ATK", "DEF", "SPA", "SPD", "SPE"])
+                StringDropdownPicker(title: "EV Yield", selection: $listFilters.evYield, options: getPokemonEvStrings())
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {

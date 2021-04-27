@@ -14,7 +14,9 @@ struct PokemonListView: View {
     @State private var showFilterSheet = false
     @State private var showSortActionSheet = false
     @State private var showStatActionSheet = false
-    @State private var listFilters = Filters(types: [], ordering: .numerical, isAscending: true, generation: "", evYield: "")
+    @State private var listFilters = Filters(
+        types: [], ordering: .numerical, isAscending: true, generation: "", evYield: ""
+    )
     @State private var showPokemonDetailView = false
 
     var body: some View {
@@ -187,30 +189,13 @@ private struct SearchFilters: View {
 
 
 private func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filters) -> [Pokemon] {
-//    var filteredPokemon = pokemon.filter {"\($0)".contains(searchText) || searchText.isEmpty}
-//    filteredPokemon = filteredPokemon.filter {filters.types.contains($0.type[0]) || filters.types.isEmpty}
-//    return filteredPokemon
     var filteredPokemon: [Pokemon] = []
     for mon in pokemon {
-        if mon.name.contains(searchText) || searchText.isEmpty {
-            if filters.types.count == 1 {
-                if mon.type.count == 1 {
-                    if mon.type[0] == filters.types[0] {
-                        filteredPokemon.append(mon)
-                    }
-                } else {
-                    if mon.type[0] == filters.types[0] || mon.type[1] == filters.types[0] {
-                        filteredPokemon.append(mon)
-                    }
+        if filterBySearch(pokemon: mon, searchText: searchText) {
+            if filterByTypes(pokemon: mon, types: filters.types) {
+                if filterByGen(id: mon.id, genFilter: filters.generation) {
+                    filteredPokemon.append(mon)
                 }
-            } else if filters.types.count == 2 {
-                if mon.type.count == 2 {
-                    if (mon.type[0] == filters.types[0] && mon.type[1] == filters.types[1]) || (mon.type[0] == filters.types[1] && mon.type[1] == filters.types[0]) {
-                        filteredPokemon.append(mon)
-                    }
-                }
-            } else {
-                filteredPokemon.append(mon)
             }
         }
     }
@@ -241,6 +226,67 @@ private func filterPokemon(pokemon: [Pokemon], searchText: String, filters: Filt
     }
     
     return filteredPokemon
+}
+
+private func filterBySearch(pokemon: Pokemon, searchText: String) -> Bool {
+    if pokemon.name.contains(searchText) || searchText.isEmpty {
+        return true
+    }
+    return false
+}
+
+private func filterByTypes(pokemon: Pokemon, types: [PokemonTyping]) -> Bool {
+    if types.count == 0 { return true }
+    if types.count == 1 {
+        if pokemon.type.count == 1 {
+            if pokemon.type[0] == types[0] {
+                return true
+            }
+        } else {
+            if pokemon.type[0] == types[0] || pokemon.type[1] == types[0] {
+                return true
+            }
+        }
+    } else if types.count == 2 {
+        if pokemon.type.count == 2 {
+            if (pokemon.type[0] == types[0] && pokemon.type[1] == types[1]) || (pokemon.type[0] == types[1] && pokemon.type[1] == types[0]) {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+private func filterByGen(id: Int, genFilter: String) -> Bool {
+    let PokemonGeneration = PokemonGenerationFilter(rawValue: genFilter) ?? PokemonGenerationFilter.none
+    switch PokemonGeneration {
+    case .gen1:
+        if id > 0 && id <= 151 { return true }
+        return false
+    case .gen2:
+        if id > 151 && id <= 251 { return true }
+        return false
+    case .gen3:
+        if id > 251 && id <= 386 { return true }
+        return false
+    case .gen4:
+        if id > 386 && id <= 493 { return true }
+        return false
+    case .gen5:
+        if id > 493 && id <= 649 { return true }
+        return false
+    case .gen6:
+        if id > 649 && id <= 721 { return true }
+        return false
+    case .gen7:
+        if id > 721 && id <= 809 { return true }
+        return false
+    case .gen8:
+        if id > 809 && id <= 898 { return true }
+        return false
+    case .none:
+        return true
+    }
 }
 
 private struct PokemonListGrid: View {
