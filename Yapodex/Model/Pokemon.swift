@@ -40,7 +40,7 @@ enum PokemonTyping: String, Decodable, CaseIterable {
 }
 
 struct PokemonBaseStats: Decodable, Hashable {
-    let HP, ATK, DEF, SPA, SPD, SPE: Int
+    let hp, atk, def, spa, spd, spe: Int
 }
 
 struct PokemonDataTypeEffectiveness: Decodable, Hashable {

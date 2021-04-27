@@ -11,6 +11,7 @@ struct StringDropdownPicker: View {
     var title: String
     @Binding var selection: String
     var options: [String]
+    let selectionFeedback = UISelectionFeedbackGenerator()
     
     @State private var showOptions: Bool = false
     
@@ -63,6 +64,7 @@ struct StringDropdownPicker: View {
                                     .onTapGesture {
                                         withAnimation(Animation.spring().speed(2)) {
                                             selection = ""
+                                            selectionFeedback.selectionChanged()
                                             showOptions = false
                                         }
                                     }
@@ -74,6 +76,7 @@ struct StringDropdownPicker: View {
                                     .onTapGesture {
                                         withAnimation(Animation.spring().speed(2)) {
                                             selection = options[index]
+                                            selectionFeedback.selectionChanged()
                                             showOptions = false
                                         }
                                     }

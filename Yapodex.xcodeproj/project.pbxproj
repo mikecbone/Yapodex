@@ -13,6 +13,7 @@
 		EA37A6FA2632F47A0050388B /* KantoTypeEffectiveness.json in Resources */ = {isa = PBXBuildFile; fileRef = EA37A6F52632F1260050388B /* KantoTypeEffectiveness.json */; };
 		EA37A6FF26331F030050388B /* Filters.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA37A6FE26331F030050388B /* Filters.swift */; };
 		EA477D9B26360B560018C741 /* SplashAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA477D9A26360B560018C741 /* SplashAnimation.swift */; };
+		EA4B074026385F330077F20A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4B073F26385F330077F20A /* SearchBar.swift */; };
 		EA6531B52637059C003D0444 /* StringDropdownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6531B42637059C003D0444 /* StringDropdownPicker.swift */; };
 		EA6531B726370659003D0444 /* TypeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6531B626370659003D0444 /* TypeIcon.swift */; };
 		EA944DA9262F716C00CDDF1C /* YapodexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA944DA8262F716C00CDDF1C /* YapodexApp.swift */; };
@@ -39,6 +40,7 @@
 		EA37A6F72632F2EC0050388B /* TypeEffectivenessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeEffectivenessViewModel.swift; sourceTree = "<group>"; };
 		EA37A6FE26331F030050388B /* Filters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filters.swift; sourceTree = "<group>"; };
 		EA477D9A26360B560018C741 /* SplashAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimation.swift; sourceTree = "<group>"; };
+		EA4B073F26385F330077F20A /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		EA6531B42637059C003D0444 /* StringDropdownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringDropdownPicker.swift; sourceTree = "<group>"; };
 		EA6531B626370659003D0444 /* TypeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeIcon.swift; sourceTree = "<group>"; };
 		EA944DA5262F716C00CDDF1C /* Yapodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yapodex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,7 @@
 				EA477D9A26360B560018C741 /* SplashAnimation.swift */,
 				EA6531B42637059C003D0444 /* StringDropdownPicker.swift */,
 				EA6531B626370659003D0444 /* TypeIcon.swift */,
+				EA4B073F26385F330077F20A /* SearchBar.swift */,
 			);
 			path = Reusable;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				EA989E5A2630A36500DC0860 /* FilterSheet.swift in Sources */,
 				EA477D9B26360B560018C741 /* SplashAnimation.swift in Sources */,
 				EABD5E6F263590830031F72D /* MovesList.swift in Sources */,
+				EA4B074026385F330077F20A /* SearchBar.swift in Sources */,
 				EA6531B726370659003D0444 /* TypeIcon.swift in Sources */,
 				EA37A6F82632F2EC0050388B /* TypeEffectivenessViewModel.swift in Sources */,
 			);

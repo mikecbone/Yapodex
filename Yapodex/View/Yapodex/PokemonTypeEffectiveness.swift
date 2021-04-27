@@ -81,7 +81,7 @@ struct PokemonTypeEffectiveness_Previews: PreviewProvider {
             PokemonTypeEffectiveness(
                 pokemon: .init(
                     id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
-                        HP: 50, ATK: 50, DEF: 50, SPA: 50, SPD: 50, SPE: 50
+                        hp: 50, atk: 50, def: 50, spa: 50, spd: 50, spe: 50
                     )
                 )
             )
@@ -90,7 +90,7 @@ struct PokemonTypeEffectiveness_Previews: PreviewProvider {
             PokemonTypeEffectiveness(
                 pokemon: .init(
                     id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
-                        HP: 50, ATK: 50, DEF: 50, SPA: 50, SPD: 50, SPE: 50
+                        hp: 50, atk: 50, def: 50, spa: 50, spd: 50, spe: 50
                     )
                 )
             ).preferredColorScheme(.dark)

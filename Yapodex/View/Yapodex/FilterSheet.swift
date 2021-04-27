@@ -14,19 +14,11 @@ struct FilterSheet: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }, label: {
-                    Text("Close")
-                })
-            }.padding()
             ScrollView {
                 HStack {
                     Text("Filters")
                         .font(.system(size: 26, weight: .bold, design: .monospaced))
-                }
+                }.padding()
                 TypingFilter(listFilters: $listFilters)
                 Divider()
                     .padding(.horizontal)
@@ -34,6 +26,11 @@ struct FilterSheet: View {
                 Divider()
                     .padding(.horizontal)
                 StringDropdownPicker(title: "EV Yield", selection: $listFilters.evYield, options: ["HP", "ATK", "DEF", "SPA", "SPD", "SPE"])
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Text("Confirm")
+                }).padding()
             }
         }
     }
@@ -48,6 +45,7 @@ struct FilterSheet_Previews: PreviewProvider {
 private struct TypingFilter: View {
     @Binding var listFilters: Filters
     @State private var showOptions: Bool = false
+    let selectionFeedback = UISelectionFeedbackGenerator()
 
     var body: some View {
         ZStack {
@@ -95,6 +93,7 @@ private struct TypingFilter: View {
                                     listFilters.types.remove(at: index)
                                     if (listFilters.types.count == 0) {
                                         withAnimation(Animation.spring().speed(2)) {
+                                            selectionFeedback.selectionChanged()
                                             showOptions = false
                                         }
                                     }
@@ -110,6 +109,7 @@ private struct TypingFilter: View {
                                     listFilters.types.append(type)
                                     if (listFilters.types.count == 2) {
                                         withAnimation(Animation.spring().speed(2)) {
+                                            selectionFeedback.selectionChanged()
                                             showOptions = false
                                         }
                                     }
