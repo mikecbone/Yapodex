@@ -63,7 +63,7 @@ private struct EffectivenessChart: View {
                 GridItem(.flexible()),
                 GridItem(.flexible())
             ], alignment: .center, spacing: 8, content: {
-                if types.count == 0 {
+                if types.isEmpty {
                     EmptyTypeIcon()
                 } else {
                     ForEach(types, id: \.self) { type in

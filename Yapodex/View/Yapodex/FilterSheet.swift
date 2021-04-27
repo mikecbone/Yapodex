@@ -12,7 +12,7 @@ struct FilterSheet: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var typeSelection: PokemonTyping = PokemonTyping.normal
     
-    func getPokemonGenerationStrings() -> [String] {
+    func getPokemonGenerationFilterStrings() -> [String] {
         var returnArray: [String] = []
         for generation in PokemonGenerationFilter.allCases {
             if generation.rawValue.isEmpty { continue }
@@ -21,11 +21,20 @@ struct FilterSheet: View {
         return returnArray
     }
     
-    func getPokemonEvStrings() -> [String] {
+    func getPokemonEvFilterStrings() -> [String] {
         var returnArray: [String] = []
         for ev in PokemonEvFilter.allCases {
             if ev.rawValue.isEmpty { continue }
             returnArray.append(ev.rawValue)
+        }
+        return returnArray
+    }
+    
+    func getPokemonMiscFilterStrings() -> [String] {
+        var returnArray: [String] = []
+        for misc in PokemonMiscFilter.allCases {
+            if misc.rawValue.isEmpty { continue }
+            returnArray.append(misc.rawValue)
         }
         return returnArray
     }
@@ -40,10 +49,13 @@ struct FilterSheet: View {
                 TypingFilter(listFilters: $listFilters)
                 Divider()
                     .padding(.horizontal)
-                StringDropdownPicker(title: "Generation", options: getPokemonGenerationStrings(), limit: 1, selections: $listFilters.generation)
+                StringDropdownPicker(title: "Generation", options: getPokemonGenerationFilterStrings(), limit: 1, selections: $listFilters.generation)
                 Divider()
                     .padding(.horizontal)
-                StringDropdownPicker(title: "EV Yield", options: getPokemonEvStrings(), limit: 1, selections: $listFilters.evYield)
+                StringDropdownPicker(title: "EV Yield", options: getPokemonEvFilterStrings(), limit: 1, selections: $listFilters.evYield)
+                Divider()
+                    .padding(.horizontal)
+                StringDropdownPicker(title: "Misc", options: getPokemonMiscFilterStrings(), limit: 1, selections: $listFilters.misc)
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
                 }, label: {
@@ -109,7 +121,7 @@ private struct TypingFilter: View {
                                 Button(action: {
                                     guard let index = listFilters.types.firstIndex(of: type) else { return }
                                     listFilters.types.remove(at: index)
-                                    if (listFilters.types.count == 0) {
+                                    if (listFilters.types.isEmpty) {
                                         withAnimation(Animation.spring().speed(2)) {
                                             selectionFeedback.selectionChanged()
                                             showOptions = false

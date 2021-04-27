@@ -13,6 +13,7 @@ struct Filters {
     var isAscending: Bool
     var generation: [String]
     var evYield: [String]
+    var misc: [String]
 }
 
 enum SortOrdering: String {
@@ -45,5 +46,12 @@ enum PokemonEvFilter: String, CaseIterable {
     case spa = "SPA"
     case spd = "SPD"
     case spe = "SPE"
+    case none = ""
+}
+
+enum PokemonMiscFilter: String, CaseIterable {
+    case mega = "Mega"
+    case alolan = "Alolan"
+    case galar = "Galar"
     case none = ""
 }

@@ -15,7 +15,7 @@ struct PokemonListView: View {
     @State private var showSortActionSheet = false
     @State private var showStatActionSheet = false
     @State private var listFilters = Filters(
-        types: [], ordering: .numerical, isAscending: true, generation: [], evYield: []
+        types: [], ordering: .numerical, isAscending: true, generation: [], evYield: [], misc: []
     )
     @State private var showPokemonDetailView = false
 
@@ -150,53 +150,73 @@ private struct SearchFilters: View {
             }
         }
         HStack {
-            if !filters.generation.isEmpty {
-                ForEach(filters.generation, id: \.self) { generation in
-                    HStack {
-                        Text(generation)
-                            .font(.system(size: 14, weight: .bold, design: .monospaced))
-                            .foregroundColor(.white)
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 8, height: 8)
-                            .font(Font.caption.bold())
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                    .cornerRadius(6.0)
-                    .padding(.top, 8)
-                    .animation(.spring())
-                    .onTapGesture(perform: {
-                        guard let index = filters.generation.firstIndex(of: generation) else { return }
-                        filters.generation.remove(at: index)
-                    })
+            ForEach(filters.generation, id: \.self) { generation in
+                HStack {
+                    Text(generation)
+                        .font(.system(size: 14, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white)
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 8, height: 8)
+                        .font(Font.caption.bold())
+                        .foregroundColor(.white)
                 }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                .cornerRadius(6.0)
+                .padding(.top, 8)
+                .animation(.spring())
+                .onTapGesture(perform: {
+                    guard let index = filters.generation.firstIndex(of: generation) else { return }
+                    filters.generation.remove(at: index)
+                })
             }
-            if !filters.evYield.isEmpty {
-                ForEach(filters.evYield, id: \.self) { ev in
-                    HStack {
-                        Text("\(ev) EVs")
-                            .font(.system(size: 14, weight: .bold, design: .monospaced))
-                            .foregroundColor(.white)
-                        Image(systemName: "xmark")
-                            .resizable()
-                            .frame(width: 8, height: 8)
-                            .font(Font.caption.bold())
-                            .foregroundColor(.white)
-                    }
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                    .cornerRadius(6.0)
-                    .padding(.top, 8)
-                    .animation(.spring())
-                    .onTapGesture(perform: {
-                        guard let index = filters.evYield.firstIndex(of: ev) else { return }
-                        filters.evYield.remove(at: index)
-                    })
+            ForEach(filters.evYield, id: \.self) { ev in
+                HStack {
+                    Text("\(ev) EVs")
+                        .font(.system(size: 14, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white)
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 8, height: 8)
+                        .font(Font.caption.bold())
+                        .foregroundColor(.white)
                 }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                .cornerRadius(6.0)
+                .padding(.top, 8)
+                .animation(.spring())
+                .onTapGesture(perform: {
+                    guard let index = filters.evYield.firstIndex(of: ev) else { return }
+                    filters.evYield.remove(at: index)
+                })
+            }
+        }
+        HStack {
+            ForEach(filters.misc, id: \.self) { misc in
+                HStack {
+                    Text(misc)
+                        .font(.system(size: 14, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white)
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 8, height: 8)
+                        .font(Font.caption.bold())
+                        .foregroundColor(.white)
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 4)
+                .background(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                .cornerRadius(6.0)
+                .padding(.top, 8)
+                .animation(.spring())
+                .onTapGesture(perform: {
+                    guard let index = filters.misc.firstIndex(of: misc) else { return }
+                    filters.misc.remove(at: index)
+                })
             }
         }
     }
@@ -251,7 +271,7 @@ private func filterBySearch(pokemon: Pokemon, searchText: String) -> Bool {
 }
 
 private func filterByTypes(pokemon: Pokemon, types: [PokemonTyping]) -> Bool {
-    if types.count == 0 { return true }
+    if types.isEmpty{ return true }
     if types.count == 1 {
         if pokemon.type.count == 1 {
             if pokemon.type[0] == types[0] {

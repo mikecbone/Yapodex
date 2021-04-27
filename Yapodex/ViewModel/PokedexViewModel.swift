@@ -11,7 +11,7 @@ class PokedexViewModel: ObservableObject {
     @Published var pokedex: PokemonDataPokedex?
     
     init() {
-        guard let pokedexPath = Bundle.main.url(forResource: "KantoPokedex", withExtension: "json") else { return }
+        guard let pokedexPath = Bundle.main.url(forResource: "Pokedex", withExtension: "json") else { return }
         DispatchQueue.main.async {
             do {
                 let pokedexData = try Data(contentsOf: pokedexPath)

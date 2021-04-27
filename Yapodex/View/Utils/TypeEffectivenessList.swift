@@ -51,7 +51,7 @@ private struct SuperEffectiveView: View {
     var body: some View {
         HStack {
             VStack {
-                if (typeEffectiveness.double_damage_from.count == 0) {
+                if (typeEffectiveness.double_damage_from.isEmpty) {
                     EmptyTypeIcon()
                 }
                 ForEach(typeEffectiveness.double_damage_from, id: \.self) { type in
@@ -72,7 +72,7 @@ private struct SuperEffectiveView: View {
             }
             Spacer()
             VStack {
-                if (typeEffectiveness.double_damage_to.count == 0) {
+                if (typeEffectiveness.double_damage_to.isEmpty) {
                     EmptyTypeIcon()
                 }
                 ForEach(typeEffectiveness.double_damage_to, id: \.self) { type in
@@ -91,7 +91,7 @@ private struct ResistantEffectiveView: View {
     var body: some View {
         HStack {
             VStack {
-                if (typeEffectiveness.half_damage_from.count == 0) {
+                if (typeEffectiveness.half_damage_from.isEmpty) {
                     EmptyTypeIcon()
                 }
                 ForEach(typeEffectiveness.half_damage_from, id: \.self) { type in
@@ -112,7 +112,7 @@ private struct ResistantEffectiveView: View {
             }
             Spacer()
             VStack {
-                if (typeEffectiveness.half_damage_to.count == 0) {
+                if (typeEffectiveness.half_damage_to.isEmpty) {
                     EmptyTypeIcon()
                 }
                 ForEach(typeEffectiveness.half_damage_to, id: \.self) { type in
@@ -131,7 +131,7 @@ private struct ImmuneEffectiveView: View {
     var body: some View {
         HStack {
             VStack {
-                if (typeEffectiveness.no_damage_from.count == 0) {
+                if (typeEffectiveness.no_damage_from.isEmpty) {
                     EmptyTypeIcon()
                 }
                 ForEach(typeEffectiveness.no_damage_from, id: \.self) { type in
@@ -152,7 +152,7 @@ private struct ImmuneEffectiveView: View {
             }
             Spacer()
             VStack {
-                if (typeEffectiveness.no_damage_to.count == 0) {
+                if (typeEffectiveness.no_damage_to.isEmpty) {
                     EmptyTypeIcon()
                 }
                 ForEach(typeEffectiveness.no_damage_to, id: \.self) { type in

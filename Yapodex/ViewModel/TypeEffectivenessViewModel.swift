@@ -11,7 +11,7 @@ class TypeEffectivenessViewModel: ObservableObject {
     @Published var typeEffectiveness: PokemonDataTypeEffectiveness?
     
     init() {
-        guard let typeEffectivenessPath = Bundle.main.url(forResource: "KantoTypeEffectiveness", withExtension: "json") else { return }
+        guard let typeEffectivenessPath = Bundle.main.url(forResource: "TypeEffectiveness", withExtension: "json") else { return }
         DispatchQueue.main.async {
             do {              
                 let typeEffectivenessData = try Data(contentsOf: typeEffectivenessPath)
