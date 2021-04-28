@@ -342,7 +342,7 @@ private struct PokemonListGrid: View {
         LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
             ForEach(filteredPokemon.indices, id: \.self) { index in
                 NavigationLink(
-                    destination: PokemonDetailView(pokemon: filteredPokemon, index: index),
+                    destination: NavigationLazyView(PokemonDetailView(pokemon: filteredPokemon, index: index)),
                     label: {
                         PokemonListRow(pokemon: filteredPokemon[index])
                     }

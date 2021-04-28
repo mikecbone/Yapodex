@@ -1,0 +1,210 @@
+{
+	"name": "Melmetal",
+	"nationalId": 809,
+	"types": [
+		"steel"
+	],
+	"abilities": [
+		{
+			"name": "Iron Fist"
+		}
+	],
+	"genderRatios": null,
+	"catchRate": 3,
+	"eggGroups": [
+		"Undiscovered"
+	],
+	"hatchTime": [
+		30840,
+		31096
+	],
+	"height": "8'02\"",
+	"weight": "800.0 kg",
+	"baseExpYield": 270,
+	"levelingRate": "Slow",
+	"evYield": {
+		"hp": 0,
+		"atk": 3,
+		"def": 0,
+		"spa": 0,
+		"spd": 0,
+		"spe": 0
+	},
+	"color": "Gray",
+	"baseFriendship": 0,
+	"baseStats": {
+		"hp": 135,
+		"atk": 143,
+		"def": 143,
+		"spa": 80,
+		"spd": 65,
+		"spe": 34
+	},
+	"evolutionFrom": {
+		"id": 808,
+		"name": "Meltan",
+		"types": [
+			"steel"
+		]
+	},
+	"evolutions": [],
+	"megaEvolutions": [],
+	"categories": "Hex Nut Pokémon",
+	"regionIds": {
+		"kanto": 153,
+		"johto": null,
+		"hoenn": null,
+		"sinnoh": null,
+		"unova": null,
+		"kalos": null,
+		"alola": null
+	},
+	"pokedexEntries": {
+		"let'SGoPikachu": "Revered long ago for its capacity to create iron from nothing, for some reason it has come back to life after 3,000 years.",
+		"let'SGoEevee": "Revered long ago for its capacity to create iron from nothing, for some reason it has come back to life after 3,000 years."
+	},
+	"pokeathlonStats": {},
+	"ultraAlolaId": null,
+	"moveLearnSets": [
+		{
+			"games": [
+				"Let's Go Pikachu",
+				"Let's Go Eevee"
+			],
+			"learnset": [
+				{
+					"move": "Thunder Punch",
+					"level": 1
+				},
+				{
+					"move": "Headbutt",
+					"level": 1
+				},
+				{
+					"move": "Harden",
+					"level": 1
+				},
+				{
+					"move": "Tail Whip",
+					"level": 1
+				},
+				{
+					"move": "Thunder Wave",
+					"level": 1
+				},
+				{
+					"move": "Tail Whip",
+					"level": 9
+				},
+				{
+					"move": "Thunder Wave",
+					"level": 18
+				},
+				{
+					"move": "Thunder Shock",
+					"level": 27
+				},
+				{
+					"move": "Acid Armor",
+					"level": 36
+				},
+				{
+					"move": "Flash Cannon",
+					"level": 45
+				},
+				{
+					"move": "Mega Punch",
+					"level": 54
+				},
+				{
+					"move": "Protect",
+					"level": 63
+				},
+				{
+					"move": "Double Iron Bash",
+					"level": 72
+				},
+				{
+					"move": "Superpower",
+					"level": 81
+				},
+				{
+					"move": "Hyper Beam",
+					"level": 90
+				},
+				{
+					"move": "Headbutt",
+					"tm": "TM01"
+				},
+				{
+					"move": "Rest",
+					"tm": "TM05"
+				},
+				{
+					"move": "Protect",
+					"tm": "TM07"
+				},
+				{
+					"move": "Substitute",
+					"tm": "TM08"
+				},
+				{
+					"move": "Facade",
+					"tm": "TM12"
+				},
+				{
+					"move": "Brick Break",
+					"tm": "TM13"
+				},
+				{
+					"move": "Thunder Wave",
+					"tm": "TM16"
+				},
+				{
+					"move": "Toxic",
+					"tm": "TM27"
+				},
+				{
+					"move": "Ice Punch",
+					"tm": "TM35"
+				},
+				{
+					"move": "Thunderbolt",
+					"tm": "TM36"
+				},
+				{
+					"move": "Thunder",
+					"tm": "TM38"
+				},
+				{
+					"move": "Earthquake",
+					"tm": "TM41"
+				},
+				{
+					"move": "Self-Destruct",
+					"tm": "TM42"
+				},
+				{
+					"move": "Solar Beam",
+					"tm": "TM45"
+				},
+				{
+					"move": "Hyper Beam",
+					"tm": "TM48"
+				},
+				{
+					"move": "Superpower",
+					"tm": "TM49"
+				},
+				{
+					"move": "Flash Cannon",
+					"tm": "TM54"
+				},
+				{
+					"move": "Ice Beam",
+					"tm": "TM55"
+				}
+			]
+		}
+	]
+}

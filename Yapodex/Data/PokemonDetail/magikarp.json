@@ -1,529 +1,437 @@
 {
-  "names": {
-    "fr": "Magicarpe",
-    "de": "Karpador",
-    "it": "Magikarp",
-    "en": "Magikarp"
-  },
-  "national_id": 129,
-  "types": [
-    "Water"
-  ],
-  "abilities": [
-    {
-      "name": "Swift Swim"
-    },
-    {
-      "name": "Rattled",
-      "hidden": true
-    }
-  ],
-  "gender_ratios": {
-    "male": 50.0,
-    "female": 50.0
-  },
-  "catch_rate": 255,
-  "egg_groups": [
-    "Water 2",
-    "Dragon"
-  ],
-  "hatch_time": [
-    1530,
-    1784
-  ],
-  "height_us": "2'11\"",
-  "height_eu": "0.9 m",
-  "weight_us": "22.0 lbs.",
-  "weight_eu": "10.0 kg",
-  "base_exp_yield": 40,
-  "leveling_rate": "Slow",
-  "ev_yield": {
-    "hp": 0,
-    "atk": 0,
-    "def": 0,
-    "sp_atk": 0,
-    "sp_def": 0,
-    "speed": 1
-  },
-  "color": "Red",
-  "base_friendship": 70,
-  "base_stats": {
-    "hp": 20,
-    "atk": 10,
-    "def": 55,
-    "sp_atk": 15,
-    "sp_def": 20,
-    "speed": 80
-  },
-  "evolutions": [
-    {
-      "to": "Gyarados",
-      "level": 20
-    }
-  ],
-  "alola_id": 91,
-  "categories": {
-    "en": "Fish Pokémon",
-    "de": "Fisch"
-  },
-  "kanto_id": 129,
-  "johto_id": 76,
-  "hoenn_id": 53,
-  "sinnoh_id": 23,
-  "unova_id": null,
-  "kalos_id": 49,
-  "mega_evolutions": [
-
-  ],
-  "evolution_from": null,
-  "variations": [
-
-  ],
-  "pokedex_entries": {
-    "Red": {
-      "en": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
-      "de": "Die urzeitlichen Vorfahren dieses Pokémon waren sehr viel Stärker als ihre heutigen Nachkommen."
-    },
-    "Blue": {
-      "en": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
-      "de": "Die urzeitlichen Vorfahren dieses Pokémon waren sehr viel Stärker als ihre heutigen Nachkommen."
-    },
-    "Yellow": {
-      "en": "Famous for being very unreliable. It can be found swimming in seas, lakes, rivers and shallow puddles.",
-      "de": "Man sollte niemals große Hoffnungen auf Karpador setzen. Dieses Pokémon ist sehr unzuverlässig."
-    },
-    "Gold": {
-      "en": "An underpowered, pathetic Pokémon. It may jump high on rare occasions, but never more than seven feet.",
-      "de": "Ein schwaches und träges Pokémon. Manchmal springt es sehr hoch, aber nie höher als zwei Meter."
-    },
-    "Silver": {
-      "en": "For no reason, it jumps and splashes about, making it easy for predators like Pidgeotto to catch it mid-jump.",
-      "de": "Es springt grundlos in die Luft. Das macht es einfach für Räuber wie Tauboga, es im Sprung zu fangen."
-    },
-    "Crystal": {
-      "en": "This weak and pathetic Pokémon gets easily pushed along rivers when there are strong currents.",
-      "de": "Dieses schwache und lethargische Pokémon wird leicht von Flussströmungen mitgerissen."
-    },
-    "Ruby": {
-      "en": "Magikarp is a pathetic excuse for a Pokémon that is only capable of flopping and splashing. This behavior prompted scientists to undertake research into it.",
-      "de": "Karpador ist ein armseliges Pokémon, das nur platschen kann. Sein merkwürdiges Verhalten hat so manchen Wissenschaftler zum Forschen angeregt."
-    },
-    "Sapphire": {
-      "en": "Magikarp is virtually useless in battle as it can only splash around. As a result, it is considered to be weak. However, it is actually a very hardy Pokémon that can survive in any body of water no matter how polluted it is.",
-      "de": "Karpador ist im Kampf praktisch nutzlos, da es nur platschen kann. Daher wird es als schwach eingeschätzt. Es ist aber tatsächlich sehr robust und kann in jedem Gewässer überleben, egal, wie verseucht dieses ist."
-    },
-    "Emerald": {
-      "en": "Its swimming muscles are weak, so it is easily washed away by currents. In places where water pools, you can see many Magikarp deposited there by the flow.",
-      "de": "Da seine Muskeln nicht stark sind, wird es leicht von der Strömung weggespült. Wo sich Wasser sammelt, findet man auch immer viele angespülte KARPADOR."
-    },
-    "FireRed": {
-      "en": "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
-      "de": "Es ist nutzlos, was Kraft und Geschwindigkeit angeht. Dieses ist das schwächste und erbärmlichste Pokémon der Welt."
-    },
-    "LeafGreen": {
-      "en": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
-      "de": "Die urzeitlichen Vorfahren dieses Pokémon waren sehr viel stärker als ihre heutigen Nachkommen."
-    },
-    "Diamond": {
-      "en": "It is said to be the world's weakest Pokémon. No one knows why it has managed to survive.",
-      "de": "Man sagt, es sei das schwächste PKMN der Welt. Niemand weiß, wie es bisher überleben konnte."
-    },
-    "Pearl": {
-      "en": "It is unable to swim against even slow-moving currents. It always splashes about for some reason.",
-      "de": "Es kann nicht einmal gegen schwache Strömungen anschwimmen. Es platscht ohne Unterlass herum."
-    },
-    "Platinum": {
-      "en": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
-      "de": "Ein älteres KARPADOR kann mit Platscher Berge überspringen. Die Attacke ist trotzdem eher nutzlos."
-    },
-    "HeartGold": {
-      "en": "An underpowered, pathetic Pokémon. It may jump high on rare occasions, but never more than seven feet.",
-      "de": "Man sagt, es sei das schwächste PKMN der Welt. Niemand weiß, wie es bisher überleben konnte."
-    },
-    "SoulSilver": {
-      "en": "For no reason, it jumps and splashes about, making it easy for predators like Pidgeotto to catch it mid-jump.",
-      "de": "Man sagt, es sei das schwächste PKMN der Welt. Niemand weiß, wie es bisher überleben konnte."
-    },
-    "Black": {
-      "en": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
-      "de": "Ein älteres Karpador kann mit Platscher Berge überspringen. Die Attacke ist trotzdem eher nutzlos."
-    },
-    "White": {
-      "en": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
-      "de": "Ein älteres Karpador kann mit Platscher Berge überspringen. Die Attacke ist trotzdem eher nutzlos."
-    },
-    "Black 2": {
-      "en": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
-      "de": "Ein älteres Karpador kann mit Platscher Berge überspringen. Die Attacke ist trotzdem eher nutzlos."
-    },
-    "White 2": {
-      "en": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
-      "de": "Ein älteres Karpador kann mit Platscher Berge überspringen. Die Attacke ist trotzdem eher nutzlos."
-    },
-    "X": {
-      "en": "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
-      "de": "Es ist nutzlos, was Kraft und Geschwindigkeit angeht. Dieses ist das schwächste und erbärmlichste Pokémon der Welt."
-    },
-    "Y": {
-      "en": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
-      "de": "Die urzeitlichen Vorfahren dieses Pokémon waren sehr viel stärker als ihre heutigen Nachkommen."
-    },
-    "Omega Ruby": {
-      "en": "Magikarp is a pathetic excuse for a Pokémon that is only capable of flopping and splashing. This behavior prompted scientists to undertake research into it.",
-      "de": "Karpador ist ein armseliges Pokémon, das nur platschen kann. Sein merkwürdiges Verhalten hat so manchen Wissenschaftler zum Forschen angeregt."
-    },
-    "Alpha Sapphire": {
-      "en": "Magikarp is virtually useless in battle as it can only splash around. As a result, it is considered to be weak. However, it is actually a very hardy Pokémon that can survive in any body of water no matter how polluted it is.",
-      "de": "Karpador ist im Kampf praktisch nutzlos, da es nur platschen kann. Daher wird es als schwach eingeschätzt. Es ist aber tatsächlich sehr robust und kann in jedem Gewässer überleben, egal, wie verseucht dieses ist."
-    },
-    "Sun": {
-      "en": "Although weak and helpless, this Pokémon is incredibly fertile. They exist in such multitudes, you'll soon grow tired of seeing them.",
-      "de": "Es ist schwach und unzuverlässig, aber es vermehrt sich unglaublich schnell. Deshalb trifft man es auch öfter an, als einem lieb ist."
-    },
-    "Moon": {
-      "en": "Its reckless leaps make it easy pickings for predators. On the bright side, many Pokémon enjoy longer life spans, thanks to Magikarp.",
-      "de": "Da es immer nur leichtsinnig herumplatscht, ist es leichte Beute für hungrige Pokémon. Für viele ist es daher ein Lebensretter."
-    },
-    "Ultra Sun": {
-      "en": "In the distant past, they were fairly strong, but they have become gradually weaker over time.",
-      "de": "Vor langer, langer Zeit war es anscheinend ziemlich stark, doch es wurde zusehends schwächer und schwächer."
-    },
-    "Ultra Moon": {
-      "en": "Thanks to their strong hold on life, dirty water doesn’t bother them at all. They live in waters all over the world!",
-      "de": "Unbekümmert strotzt es selbst in verseuchten Gewässern nur so vor Lebenskraft. Man findet es in allen Teilen der Welt in Ufernähe."
-    }
-  },
-  "pokeathlon_stats": {
-    "speed": [
-      1,
-      5
-    ],
-    "power": [
-      1,
-      4
-    ],
-    "stamina": [
-      1,
-      5
-    ],
-    "skill": [
-      1,
-      3
-    ],
-    "jump": [
-      2,
-      4
-    ]
-  },
-  "ultra_alola_id": 53,
-  "move_learnsets": [
-    {
-      "games": [
-        "Red",
-        "Blue"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        }
-      ]
-    },
-    {
-      "games": [
-        "Yellow"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        }
-      ]
-    },
-    {
-      "games": [
-        "Gold",
-        "Silver"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Crystal"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Ruby",
-        "Sapphire"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "FireRed",
-        "LeafGreen"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Emerald"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Diamond",
-        "Pearl"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Platinum"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "HeartGold",
-        "SoulSilver"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Black",
-        "White"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Black 2",
-        "White 2"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "X",
-        "Y"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Omega Ruby",
-        "Alpha Sapphire"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Sun",
-        "Moon"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    },
-    {
-      "games": [
-        "Ultra Sun",
-        "Ultra Moon"
-      ],
-      "learnset": [
-        {
-          "move": "Splash",
-          "level": 1
-        },
-        {
-          "move": "Tackle",
-          "level": 15
-        },
-        {
-          "move": "Flail",
-          "level": 30
-        }
-      ]
-    }
-  ]
+	"name": "Magikarp",
+	"nationalId": 129,
+	"types": [
+		"water"
+	],
+	"abilities": [
+		{
+			"name": "Swift Swim"
+		},
+		{
+			"name": "Rattled",
+			"hidden": true
+		}
+	],
+	"genderRatios": {
+		"male": 50,
+		"female": 50
+	},
+	"catchRate": 255,
+	"eggGroups": [
+		"Water 2",
+		"Dragon"
+	],
+	"hatchTime": [
+		1530,
+		1784
+	],
+	"height": "2'11\"",
+	"weight": "10.0 kg",
+	"baseExpYield": 40,
+	"levelingRate": "Slow",
+	"evYield": {
+		"hp": 0,
+		"atk": 0,
+		"def": 0,
+		"spa": 0,
+		"spd": 0,
+		"spe": 1
+	},
+	"color": "Red",
+	"baseFriendship": 70,
+	"baseStats": {
+		"hp": 20,
+		"atk": 10,
+		"def": 55,
+		"spa": 15,
+		"spd": 20,
+		"spe": 80
+	},
+	"evolutionFrom": null,
+	"evolutions": [
+		{
+			"id": 130,
+			"name": "Gyarados",
+			"types": [
+				"water",
+				"flying"
+			],
+			"level": 20
+		}
+	],
+	"megaEvolutions": [],
+	"categories": "Fish Pokémon",
+	"regionIds": {
+		"kanto": 129,
+		"johto": 76,
+		"hoenn": 53,
+		"sinnoh": 23,
+		"unova": null,
+		"kalos": 49,
+		"alola": 91
+	},
+	"pokedexEntries": {
+		"red": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
+		"blue": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
+		"yellow": "Famous for being very unreliable. It can be found swimming in seas, lakes, rivers and shallow puddles.",
+		"gold": "An underpowered, pathetic Pokémon. It may jump high on rare occasions, but never more than seven feet.",
+		"silver": "For no reason, it jumps and splashes about, making it easy for predators like Pidgeotto to catch it mid-jump.",
+		"crystal": "This weak and pathetic Pokémon gets easily pushed along rivers when there are strong currents.",
+		"ruby": "Magikarp is a pathetic excuse for a Pokémon that is only capable of flopping and splashing. This behavior prompted scientists to undertake research into it.",
+		"sapphire": "Magikarp is virtually useless in battle as it can only splash around. As a result, it is considered to be weak. However, it is actually a very hardy Pokémon that can survive in any body of water no matter how polluted it is.",
+		"emerald": "Its swimming muscles are weak, so it is easily washed away by currents. In places where water pools, you can see many Magikarp deposited there by the flow.",
+		"fireRed": "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
+		"leafGreen": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
+		"diamond": "It is said to be the world's weakest Pokémon. No one knows why it has managed to survive.",
+		"pearl": "It is unable to swim against even slow-moving currents. It always splashes about for some reason.",
+		"platinum": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
+		"heartGold": "An underpowered, pathetic Pokémon. It may jump high on rare occasions, but never more than seven feet.",
+		"soulSilver": "For no reason, it jumps and splashes about, making it easy for predators like Pidgeotto to catch it mid-jump.",
+		"black": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
+		"white": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
+		"black2": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
+		"white2": "A Magikarp living for many years can leap a mountain using Splash. The move remains useless, though.",
+		"x": "It is virtually worthless in terms of both power and speed. It is the most weak and pathetic Pokémon in the world.",
+		"y": "In the distant past, it was somewhat stronger than the horribly weak descendants that exist today.",
+		"omegaRuby": "Magikarp is a pathetic excuse for a Pokémon that is only capable of flopping and splashing. This behavior prompted scientists to undertake research into it.",
+		"alphaSapphire": "Magikarp is virtually useless in battle as it can only splash around. As a result, it is considered to be weak. However, it is actually a very hardy Pokémon that can survive in any body of water no matter how polluted it is.",
+		"sun": "Although weak and helpless, this Pokémon is incredibly fertile. They exist in such multitudes, you'll soon grow tired of seeing them.",
+		"moon": "Its reckless leaps make it easy pickings for predators. On the bright side, many Pokémon enjoy longer life spans, thanks to Magikarp.",
+		"ultraSun": "In the distant past, they were fairly strong, but they have become gradually weaker over time.",
+		"ultraMoon": "Thanks to their strong hold on life, dirty water doesn’t bother them at all. They live in waters all over the world!"
+	},
+	"pokeathlonStats": {
+		"speed": [
+			1,
+			5
+		],
+		"power": [
+			1,
+			4
+		],
+		"stamina": [
+			1,
+			5
+		],
+		"skill": [
+			1,
+			3
+		],
+		"jump": [
+			2,
+			4
+		]
+	},
+	"ultraAlolaId": 53,
+	"moveLearnSets": [
+		{
+			"games": [
+				"Red",
+				"Blue"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				}
+			]
+		},
+		{
+			"games": [
+				"Yellow"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				}
+			]
+		},
+		{
+			"games": [
+				"Gold",
+				"Silver"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Crystal"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Ruby",
+				"Sapphire"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"FireRed",
+				"LeafGreen"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Emerald"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Diamond",
+				"Pearl"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Platinum"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"HeartGold",
+				"SoulSilver"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Black",
+				"White"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Black 2",
+				"White 2"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"X",
+				"Y"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Omega Ruby",
+				"Alpha Sapphire"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Sun",
+				"Moon"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		},
+		{
+			"games": [
+				"Ultra Sun",
+				"Ultra Moon"
+			],
+			"learnset": [
+				{
+					"move": "Splash",
+					"level": 1
+				},
+				{
+					"move": "Tackle",
+					"level": 15
+				},
+				{
+					"move": "Flail",
+					"level": 30
+				}
+			]
+		}
+	]
 }

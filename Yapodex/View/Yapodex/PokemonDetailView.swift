@@ -8,19 +8,26 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
+    @ObservedObject private var vm: DetailedPokemonViewModel
     let pokemon: [Pokemon]
     @State var index: Int
     @State private var displayMode = "levelup"
 
+    init(pokemon: [Pokemon], index: Int) {
+        self.pokemon = pokemon
+        self.index = index
+        self.vm = DetailedPokemonViewModel(name: pokemon[index].name)
+    }
+
     var body: some View {
         ScrollView {
             ScrollViewReader { scrollView in
-                PokemonImage(pokemon: pokemon, index: $index).id(0)
-                InitialInfo(pokemon: pokemon[index])
-                BaseStats(pokemon: pokemon[index])
-                Abilities()
-                Evolutions(index: $index, scrollView: scrollView)
-                Moves(displayMode: $displayMode)
+                PokemonImage(pokemon: pokemon, index: $index, vm: vm).id(0)
+                InitialInfo(pokemonDetail: vm.pokemonDetail)
+                BaseStats(pokemonDetail: vm.pokemonDetail)
+                Abilities(pokemonAbilities: vm.pokemonDetail.abilities)
+                Evolutions(index: $index, scrollView: scrollView, pokemonDetail: vm.pokemonDetail)
+                Moves(displayMode: $displayMode, moveLearnSets: vm.pokemonDetail.moveLearnSets)
             }
         }.navigationTitle("Details")
             .navigationBarTitleDisplayMode(.inline)
@@ -39,15 +46,13 @@ struct PokemonDetailView: View {
 struct PokemonDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PokemonListView()
-//        NavigationView {
-//            PokemonDetailView(pokemon: [Pokemon(id: 1, name: "Bulbasaur", type: [PokemonTyping.grass], base: PokemonBaseStats(HP: 10, ATK: 10, DEF: 10, SPA: 10, SPD: 10, SPE: 1))], index: 1)
-//        }
     }
 }
 
 private struct PokemonImage: View {
     let pokemon: [Pokemon]
     @Binding var index: Int
+    var vm: DetailedPokemonViewModel
 
     var body: some View {
         ZStack {
@@ -64,6 +69,9 @@ private struct PokemonImage: View {
                         .padding(42)
                 }
             }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .onChange(of: index, perform: { index in
+                vm.getPokemon(name: pokemon[index].name)
+            })
             HStack {
                 Button(action: {
                     index -= 1
@@ -76,6 +84,7 @@ private struct PokemonImage: View {
                 Spacer()
                 Button(action: {
                     index += 1
+                    
                 }, label: {
                     Image(systemName: "chevron.forward")
                         .imageScale(.large)
@@ -89,30 +98,30 @@ private struct PokemonImage: View {
 }
 
 private struct InitialInfo: View {
-    let pokemon: Pokemon
+    var pokemonDetail: PokemonDetail
 
     var body: some View {
         VStack {
             NavigationLink(
-                destination: PokemonTypeEffectiveness(pokemon: pokemon),
+                destination: PokemonTypeEffectiveness(pokemonId: pokemonDetail.nationalId, pokemonTypes: pokemonDetail.types),
                 label: {
                     HStack {
-                        ForEach(pokemon.type, id: \.self) { type in
+                        ForEach(pokemonDetail.types, id: \.self) { type in
                             TypeIcon(typing: type)
                         }
                     }
                 }
             )
-            Text(pokemon.name)
+            Text(pokemonDetail.name)
                 .font(.system(size: 32, weight: .bold, design: .monospaced))
-            Text("#\(String(format: "%03d", pokemon.id))")
+            Text("#\(String(format: "%03d", pokemonDetail.nationalId))")
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
         }.padding(8)
     }
 }
 
 private struct BaseStats: View {
-    let pokemon: Pokemon
+    var pokemonDetail: PokemonDetail
 
     var body: some View {
         VStack {
@@ -120,14 +129,14 @@ private struct BaseStats: View {
                 .font(.system(size: 22, weight: .bold, design: .monospaced))
                 .padding(.bottom, 4)
             VStack(spacing: 12) {
-                BaseStatBar(statName: "HP ", statValue: Double(pokemon.base.hp))
-                BaseStatBar(statName: "ATK", statValue: Double(pokemon.base.atk))
-                BaseStatBar(statName: "DEF", statValue: Double(pokemon.base.def))
-                BaseStatBar(statName: "SPA", statValue: Double(pokemon.base.spa))
-                BaseStatBar(statName: "SPD", statValue: Double(pokemon.base.spd))
-                BaseStatBar(statName: "SPE", statValue: Double(pokemon.base.spe))
+                BaseStatBar(statName: "HP ", statValue: Double(pokemonDetail.baseStats.hp))
+                BaseStatBar(statName: "ATK", statValue: Double(pokemonDetail.baseStats.atk))
+                BaseStatBar(statName: "DEF", statValue: Double(pokemonDetail.baseStats.def))
+                BaseStatBar(statName: "SPA", statValue: Double(pokemonDetail.baseStats.spa))
+                BaseStatBar(statName: "SPD", statValue: Double(pokemonDetail.baseStats.spd))
+                BaseStatBar(statName: "SPE", statValue: Double(pokemonDetail.baseStats.spe))
             }
-            Text("Total: \(pokemon.base.hp + pokemon.base.atk + pokemon.base.def + pokemon.base.spa + pokemon.base.spd + pokemon.base.spe)")
+            Text("Total: \(pokemonDetail.baseStats.hp + pokemonDetail.baseStats.atk + pokemonDetail.baseStats.def + pokemonDetail.baseStats.spa + pokemonDetail.baseStats.spd + pokemonDetail.baseStats.spe)")
         }.padding(8)
             .font(.system(size: 16, weight: .regular, design: .monospaced))
             .background(Color(.systemGray6))
@@ -146,18 +155,20 @@ private struct BaseStatBar: View {
 }
 
 private struct Abilities: View {
+    var pokemonAbilities: [PokemonAbility]
+    
     var body: some View {
         VStack {
             Text("Abilities")
                 .font(.system(size: 22, weight: .bold, design: .monospaced))
                 .padding(.bottom, 4)
-            ForEach(0..<2, id: \.self) { _ in
+            ForEach(pokemonAbilities, id: \.self) { ability in
                 NavigationLink(
                     destination: Text("Destination"),
                     label: {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("Overgrow")
+                                Text(ability.name)
                                     .font(.system(size: 16, weight: .regular, design: .monospaced))
                                 Text("Strengthens Grass moves to inflict 1.5x damage at 1/3 max HP or less")
                                     .font(.system(size: 14, weight: .regular, design: .monospaced))
@@ -175,44 +186,47 @@ private struct Abilities: View {
 private struct Evolutions: View {
     @Binding var index: Int
     let scrollView: ScrollViewProxy
+    let pokemonDetail: PokemonDetail
     
     var body: some View {
         VStack {
             Text("Evolutions")
                 .font(.system(size: 22, weight: .bold, design: .monospaced))
                 .padding(.bottom, 4)
-            VStack(alignment: .leading) {
-                Text("Evolves From:")
-                    .font(.system(size: 16, weight: .regular, design: .monospaced))
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-                    ForEach(0..<1, id: \.self) { _ in
-                        Button(action: {
-                            index = 0
-                            withAnimation {
-                                scrollView.scrollTo(0)
-                            }
-                        }, label: {
-                            PokemonEvolutionRow()
-                        }).foregroundColor(Color(.label))
-                    }
-                })
+            if (pokemonDetail.evolutionFrom != nil) {
+                VStack(alignment: .leading) {
+                    Text("Evolves From:")
+                        .font(.system(size: 16, weight: .regular, design: .monospaced))
+                    Button(action: {
+                        index = (pokemonDetail.evolutionFrom?.id ?? 1) - 1
+                        withAnimation {
+                            scrollView.scrollTo(0)
+                        }
+                    }, label: {
+                        PokemonEvolutionRow(id: pokemonDetail.evolutionFrom?.id ?? 1, name:  pokemonDetail.evolutionFrom?.name ?? "", types:  pokemonDetail.evolutionFrom?.types ?? [])
+                    }).foregroundColor(Color(.label))
+                }
             }
-            Divider()
-            VStack(alignment: .leading) {
-                Text("Evolves To:")
-                    .font(.system(size: 16, weight: .regular, design: .monospaced))
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-                    ForEach(0..<1, id: \.self) { _ in
-                        Button(action: {
-                            index = 2
-                            withAnimation {
-                                scrollView.scrollTo(0)
-                            }
-                        }, label: {
-                            PokemonEvolutionRow()
-                        }).foregroundColor(Color(.label))
-                    }
-                })
+            if (pokemonDetail.evolutionFrom != nil && !pokemonDetail.evolutions.isEmpty) {
+                Divider()
+            }
+            if (!pokemonDetail.evolutions.isEmpty) {
+                VStack(alignment: .leading) {
+                    Text("Evolves To:")
+                        .font(.system(size: 16, weight: .regular, design: .monospaced))
+                    LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
+                        ForEach(pokemonDetail.evolutions, id: \.self) { evolution in
+                            Button(action: {
+                                index = evolution.id - 1
+                                withAnimation {
+                                    scrollView.scrollTo(0)
+                                }
+                            }, label: {
+                                PokemonEvolutionRow(id: evolution.id, name: evolution.name, types: evolution.types)
+                            }).foregroundColor(Color(.label))
+                        }
+                    })
+                }
             }
         }.padding(8)
             .background(Color(.systemGray6))
@@ -220,16 +234,22 @@ private struct Evolutions: View {
 }
 
 private struct PokemonEvolutionRow: View {
+    let id: Int
+    let name: String
+    let types: [PokemonTyping]
+    
     var body: some View {
         HStack {
-            Image("1")
+            Image("\(id)")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 40, height: 40)
-            Text("Ivysaur")
+            Text(name)
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
             Spacer()
-            TypeIcon(typing: PokemonTyping.grass)
+            ForEach(types, id: \.self) { type in
+                TypeIcon(typing: type)
+            }
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
@@ -238,6 +258,7 @@ private struct PokemonEvolutionRow: View {
 
 private struct Moves: View {
     @Binding var displayMode: String
+    let moveLearnSets: [PokemonLearnsets]
 
     var body: some View {
         VStack {
@@ -251,11 +272,11 @@ private struct Moves: View {
                 Text("Tutor").tag("tutor")
             }.pickerStyle(SegmentedPickerStyle())
             LazyVGrid(columns: [GridItem(.flexible(), spacing: nil)], alignment: .center, spacing: 0, content: {
-                ForEach(0..<4, id: \.self) { _ in
+                ForEach(moveLearnSets[0].learnset, id: \.self) { move in
                     NavigationLink(
                         destination: Text("Destination"),
                         label: {
-                            PokemonMoveRow()
+                            PokemonMoveRow(move: move)
                         }
                     ).foregroundColor(Color(.label))
                     Divider()
@@ -266,19 +287,27 @@ private struct Moves: View {
 }
 
 private struct PokemonMoveRow: View {
+    let move: PokemonMoveset
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("Leech Seed")
+                Text(move.move)
                     .font(.system(size: 16, weight: .regular, design: .monospaced))
-                Text("Level 1")
-                    .font(.system(size: 12, weight: .light, design: .monospaced))
+                if (move.level != nil) {
+                    Text("\(move.level!)")
+                        .font(.system(size: 12, weight: .light, design: .monospaced))
+                }
+                if (move.tm != nil) {
+                    Text(move.tm!)
+                        .font(.system(size: 12, weight: .light, design: .monospaced))
+                }
             }
             Spacer()
             Text("50")
                 .padding(.horizontal)
                 .font(.system(size: 16, weight: .regular, design: .monospaced))
-            TypeIcon(typing: PokemonTyping.grass)
+//            TypeIcon(typing: PokemonTyping.grass)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 8)

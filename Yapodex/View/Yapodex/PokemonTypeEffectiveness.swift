@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct PokemonTypeEffectiveness: View {
-    let pokemon: Pokemon
+    let pokemonId: Int
+    let pokemonTypes: [PokemonTyping]
     @ObservedObject private var vm = TypeEffectivenessViewModel()
 
     func GetTypeEffectivenessArray(types: [PokemonTyping]) -> [TypeEffectiveness] {
@@ -20,15 +21,15 @@ struct PokemonTypeEffectiveness: View {
     }
 
     var body: some View {
-        let combinedTyping = PokemonUtils.CalculateTypeEffectivenessFrom(typeEffectivenesses: GetTypeEffectivenessArray(types: pokemon.type))
+        let combinedTyping = PokemonUtils.CalculateTypeEffectivenessFrom(typeEffectivenesses: GetTypeEffectivenessArray(types: pokemonTypes))
 
         ScrollView {
             HStack {
-                Image("\(pokemon.id)")
+                Image("\(pokemonId)")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 60, height: 60)
-                ForEach(pokemon.type, id: \.self) { type in
+                ForEach(pokemonTypes, id: \.self) { type in
                     TypeIcon(typing: type)
                 }
             }.padding(.top, 8)
@@ -78,22 +79,7 @@ private struct EffectivenessChart: View {
 struct PokemonTypeEffectiveness_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            PokemonTypeEffectiveness(
-                pokemon: .init(
-                    id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
-                        hp: 50, atk: 50, def: 50, spa: 50, spd: 50, spe: 50
-                    )
-                )
-            )
-        }
-        NavigationView {
-            PokemonTypeEffectiveness(
-                pokemon: .init(
-                    id: 1, name: "Bulbasaur", type: [PokemonTyping.grass, PokemonTyping.poison], base: PokemonBaseStats(
-                        hp: 50, atk: 50, def: 50, spa: 50, spd: 50, spe: 50
-                    )
-                )
-            ).preferredColorScheme(.dark)
+            PokemonTypeEffectiveness(pokemonId: 01, pokemonTypes: [PokemonTyping.grass, PokemonTyping.poison])
         }
     }
 }

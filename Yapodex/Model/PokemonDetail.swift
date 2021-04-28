@@ -7,25 +7,71 @@
 
 import Foundation
 
-struct PokemonDetail {
-    let names: [PokemonName]
-    let national_id: Int
+struct PokemonDetail: Decodable {
+    let name: String
+    let nationalId: Int
     let types: [PokemonTyping]
     let abilities: [PokemonAbility]
-    let gender_ratios: [PokemonGenderRatio]
-    let catch_rate: Int
-    let egg_groups: [PokemonEggGroup]
-    let hatch_time: [Int]
-    let height: Int
-    let weight: Int
-    let base_exp_yield: Int
-    let leveling_rate: [PokemonLevelingRate]
-    let ev_yield: PokemonEvYield
+    let genderRatios: PokemonGenderRatio?
+    let catchRate: Int
+    let eggGroups: [String]
+    let hatchTime: [Int]
+    let height: String
+    let weight: String
+    let baseExpYield: Int
+    let levelingRate: String
+    let evYield: PokemonEvYield
     let color: String
-    let base_friendship: Int
-    let base_stats: [PokemonBaseStats]
-    let evolution_from: String
-    let categories: PokemonCategory
+    let baseFriendship: Int
+    let baseStats: PokemonBaseStats
+    let evolutionFrom: PokemonEvolutionFrom?
+    let evolutions: [PokemonEvolutionTo]
+    let megaEvolutions: [PokemonMegaEvolutions]
+    let categories: String
+    let regionIds: PokemonRegionIds
+//    let variations: [PokemonVariations]
+    let pokedexEntries: PokedexEntries
+    let pokeathlonStats: PokeathlonStats
+    let ultraAlolaId: Int?
+    let moveLearnSets: [PokemonLearnsets]
+}
+
+struct PokemonAbility: Decodable, Hashable {
+    let name: String
+    let hidden: Bool?
+}
+
+struct PokemonGenderRatio: Decodable {
+    let male, female: Double?
+}
+
+struct PokemonEvYield: Decodable  {
+    let hp, atk, def, spa, spd, spe: Int
+}
+
+struct PokemonEvolutionFrom: Decodable {
+    let id: Int
+    let name: String
+    let types: [PokemonTyping]
+}
+
+struct PokemonEvolutionTo: Decodable, Hashable {
+    let id: Int
+    let name: String
+    let types: [PokemonTyping]
+    let level: Int?
+    let item: String?
+    let happiness, level_up: Bool?
+    let conditions: [String]?
+}
+
+struct PokemonMegaEvolutions: Decodable {
+    let types: [PokemonTyping]
+    let ability, megaStone, height, weight: String
+    let baseStats: PokemonBaseStats
+}
+
+struct PokemonRegionIds: Decodable {
     let kanto_id: Int?
     let johto_id: Int?
     let hoenn_id: Int?
@@ -33,13 +79,28 @@ struct PokemonDetail {
     let unova_id: Int?
     let kalos_id: Int?
     let alola_id: Int?
-    let mega_evolutions: [PokemonMegaEvolutions]
-    let evolutions: [PokemonEvolutions]
-    let variations: [PokemonVariations]
-    let pokedex_entries: [PokemonPokedexEntries]
-    let pokeathlon_stats: [PokeathlonStats]
-    let ultra_alola_id: Int?
-    let move_learnsets: [PokemonLearnsets]
 }
 
-  
+//struct PokemonVariations {
+//
+//}
+
+struct PokedexEntries: Decodable {
+    let red, blue, yellow, gold, silver, crystal, ruby, sapphire, emerald, fireRed, leafGreen, diamond, pearl, platinum, heartGold, soulSilver, black, white, black2, white2, x, y, omegaRuby, alphaSapphire, sun, moon, ultraSun, ultraMoon: String?
+}
+
+struct PokeathlonStats: Decodable {
+    let speed, power, stamina, skill, jump: [Int]
+}
+
+struct PokemonLearnsets: Decodable {
+    let games: [String]
+    let learnset: [PokemonMoveset]
+}
+
+struct PokemonMoveset: Decodable, Hashable {
+    let move: String
+    let level: Int?
+    let tm: String?
+    let egg_move: Bool?
+}
